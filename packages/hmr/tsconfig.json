@@ -1,0 +1,7 @@
+{
+  "extends": "@bpmn-diff-viewer-extension/tsconfig/utils",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["lib", "index.ts", "rollup.config.mjs"]
+}

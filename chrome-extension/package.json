@@ -1,0 +1,37 @@
+{
+  "name": "chrome-extension",
+  "version": "0.0.1",
+  "description": "chrome extension",
+  "scripts": {
+    "clean": "rimraf ../../dist && rimraf .turbo",
+    "build": "tsc --noEmit && vite build",
+    "build:firefox": "tsc --noEmit && cross-env __FIREFOX__=true vite build",
+    "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+    "build:firefox:watch": "cross-env __DEV__=true __FIREFOX__=true vite build -w --mode development",
+    "dev": "pnpm build:watch",
+    "dev:firefox": "pnpm build:firefox:watch",
+    "test": "vitest run",
+    "lint": "eslint ./ --ext .ts,.js,.tsx,.jsx",
+    "lint:fix": "pnpm lint --fix",
+    "prettier": "prettier . --write",
+    "type-check": "tsc --noEmit"
+  },
+  "type": "module",
+  "dependencies": {
+    "@bpmn-diff-viewer-extension/shared": "workspace:*",
+    "@bpmn-diff-viewer-extension/storage": "workspace:*",
+    "@octokit/rest": "^20.1.1",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "devDependencies": {
+    "@bpmn-diff-viewer-extension/dev-utils": "workspace:*",
+    "@bpmn-diff-viewer-extension/hmr": "workspace:*",
+    "@bpmn-diff-viewer-extension/tsconfig": "workspace:*",
+    "@laynezh/vite-plugin-lib-assets": "^0.5.21",
+    "@octokit/openapi-types": "^22.2.0",
+    "@octokit/types": "^13.5.0",
+    "@types/ws": "^8.5.10",
+    "magic-string": "^0.30.10",
+    "ts-loader": "^9.5.1"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extensionDescription": {
+    "description": "Extension description",
+    "message": "A chrome extension for viewing the diff of BPMN files in Github"
+  },
+  "extensionName": {
+    "description": "Extension name",
+    "message": "BPMN Diff Viewer"
+  }
+}

@@ -1,65 +1,125 @@
-![Zoo](/public/logo192.png)
+<div align="center">
+<img src="chrome-extension/public/icon-128.png" alt="logo"/>
+<h1> Chrome Extension Boilerplate with<br/>React + Vite + TypeScript</h1>
 
-## Zoo Diff Viewer Extension
+![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![](https://badges.aleen42.com/src/vitejs.svg)
+![GitHub action badge](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/actions/workflows/build-zip.yml/badge.svg)
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/Jonghakseo/chrome-extension-boilerplate-react-viteFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
 
-View changes to your models directly within GitHub with our extension for all Chrome, Edge, and Chromium-powered browsers. Use the industry-standard version control platform, supercharged with a rich CAD visualizer. Open-source and powered by the KittyCAD API.
+> This boilerplate
+> has [Legacy version](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/tree/legacy)
 
-### Review model changes visually
+</div>
 
-Upload your models to GitHub and make safe, incremental changes to them with a full version history. And with our extension, you can now visually review your model with clear indications of what has changed between versions. Our extension overrides some of the GitHub interface to provide you with a full 3D view of your files, and two review modes:
+> [!TIP]
+> This project is listed in the [Awesome Vite](https://github.com/vitejs/awesome-vite)
 
-- 2-up view: For when you just need to see the before and after state of the model; and
-![2-up view](/public/diff-viewer-2-up.jpg)
+> [!IMPORTANT]
+> Share storage state between every page
+>
+> https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/assets/53500778/1992e46c-032a-4743-bbd2-c421757517d7
 
-- Combined view (experimental): See the additions, deletions, and unchanged portions of your model in one 3D viewer.
+## Table of Contents
 
-![Combined view](/public/diff-viewer-combined.jpg)
+- [Intro](#intro)
+- [Features](#features)
+- [Structure](#structure)
+    - [ChromeExtension](#chrome-extension)
+    - [Packages](#packages)
+    - [Pages](#pages)
+- [Install](#install)
+    - [Procedures](#procedures)
+        - [Chrome](#chrome)
+        - [Firefox](#firefox)
+- [Reference](#reference)
+- [Star History](#starhistory)
+- [Contributors](#contributors)
 
-## Try it now
+## Intro <a name="intro"></a>
 
-Live on the [Google Chrome Store](https://chrome.google.com/webstore/detail/kittycad-diff-viewer/gccpihmphokfjpohkmkbimnhhnlpmegp).
+This boilerplate is made for creating chrome extensions using React and Typescript.
+> The focus was on improving the build speed and development experience with Vite(Rollup) & Turborepo.
 
-## Running a development build
+## Features <a name="features"></a>
 
-The project uses Vite, with Node 18, yarn 3 as package manager and TypeScript.
+- [React18](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+- [Turborepo](https://turbo.build/repo)
+- [Prettier](https://prettier.io/)
+- [ESLint](https://eslint.org/)
+- [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
+- Custom HMR(Hot Module Rebuild) Plugin
 
-From the project directory:
+## Install <a name="install"></a>
 
-### `yarn install`
+## Procedures: <a name="procedures"></a>
 
-Installs all the dependencies needed to build and test the project.
+1. Clone this repository.
+2. Change `extensionDescription` and `extensionName` in `messages.json` file.
+3. Install pnpm globally: `npm install -g pnpm` (check your node version >= 18.12.0)
+4. Run `pnpm install`
 
-### `yarn build`
+## And next, depending on the needs:
 
-Builds the extension for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### For Chrome: <a name="chrome"></a>
 
-The generated `build` directory may then be added to Chrome with the **Load unpacked** button at [chrome://extensions](). This needs to be done everytime there's a change.
+1. Run:
+    - Dev: `pnpm dev` (it's run parallel with `pnpm dev-server` automatically)
+        - When you run with Windows, you should run as
+          administrator. [(Issue#456)](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/456)
+    - Prod: `pnpm build`
+2. Open in browser - `chrome://extensions`
+3. Check - `Developer mode`
+4. Find and Click - `Load unpacked extension`
+5. Select - `dist` folder at root
 
-### `yarn start`
+### For Firefox: <a name="firefox"></a>
 
-Runs the extension in the development mode.
+1. Run:
+    - Dev: `pnpm dev:firefox` (it's run parallel with `pnpm dev-server` automatically)
+    - Prod: `pnpm build:firefox`
+2. Open in browser - `about:debugging#/runtime/this-firefox`
+3. Find and Click - `Load Temporary Add-on...`
+4. Select - `manifest.json` from `dist` folder at root
 
-The generated `build` directory may then be added to Chrome with the **Load unpacked** button at [chrome://extensions](). Background/content scripts and React views should reload as changes are made.
+### <i>Remember in firefox you add plugin in temporary mode, that's mean it's disappear after close browser, you must do it again, on next launch.</i>
 
-### `yarn test`
+## Structure <a name="structure"></a>
 
-Launches the unit tests runner in the interactive watch mode.
+### ChromeExtension <a name="chrome-extension"></a>
 
-### `yarn e2e`
+Main app with background script, manifest
 
-Builds the extension and runs end-to-end tests through an automated Chromium instance.
+- `manifest.js` - manifest for chrome extension
+- `lib/background` - [background script](https://developer.chrome.com/docs/extensions/mv3/background_pages/) for chrome
+  extension (`background.service_worker` in
+  manifest.json)
+- `public/content.css` - content css for user's page injection
 
-## Release a new version
+### Packages <a name="packages"></a>
 
-1. Bump the versions in the source code by creating a new PR, committing the changes from
+Some shared packages
 
-```bash
-VERSION=x.y.z npm run bump
-```
+- `dev-utils` - utils for chrome extension development (manifest-parser, logger)
+- `hmr` - custom HMR plugin for vite, injection script for reload/refresh, hmr dev-server
+- `shared` - shared code for entire project. (types, constants, custom hooks, components, etc.)
+- `tsconfig` - shared tsconfig for entire project.
 
-2. Merge the PR
+### Pages <a name="pages"></a>
 
-3. Create a new release and tag pointing to the bump version commit using semantic versioning `v{x}.{y}.{z}`
+- `content` - [content script](https://developer.chrome.com/docs/extensions/mv3/content_scripts/) for chrome
+  extension (`content_scripts` in manifest.json)
+- `content-ui` - [content script](https://developer.chrome.com/docs/extensions/mv3/content_scripts/) for render UI in
+  user's page (`content_scripts` in manifest.json)
 
-A new Action should run, uploading artifacts to the release itself and to the Chrome Web Store at https://chrome.google.com/webstore/detail/kittycad-diff-viewer/gccpihmphokfjpohkmkbimnhhnlpmegp
+## Reference <a name="reference"></a>
+
+- [Vite Plugin](https://vitejs.dev/guide/api-plugin.html)
+- [ChromeExtension](https://developer.chrome.com/docs/extensions/mv3/)
+- [Rollup](https://rollupjs.org/guide/en/)
+- [Turborepo](https://turbo.build/repo/docs)
+- [Rollup-plugin-chrome-extension](https://www.extend-chrome.dev/rollup-plugin)
