@@ -1,23 +1,3 @@
-import { createRoot } from 'react-dom/client';
-import App from '@src/app';
-// eslint-disable-next-line
-// @ts-ignore
-import tailwindcssOutput from '@src/tailwind-output.css?inline';
+import { getGithubInjectionScript } from './content';
 
-const root = document.createElement('div');
-root.id = 'chrome-extension-bpmn-diff-viewer-root';
-
-document.body.append(root);
-
-const rootIntoShadow = document.createElement('div');
-rootIntoShadow.id = 'shadow-root';
-
-const shadowRoot = root.attachShadow({ mode: 'open' });
-shadowRoot.appendChild(rootIntoShadow);
-
-/** Inject styles into shadow dom */
-const styleElement = document.createElement('style');
-styleElement.innerHTML = tailwindcssOutput;
-shadowRoot.appendChild(styleElement);
-
-createRoot(rootIntoShadow).render(<App />);
+getGithubInjectionScript();

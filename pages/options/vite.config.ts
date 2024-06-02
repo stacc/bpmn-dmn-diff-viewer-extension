@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
-import { makeEntryPointPlugin, watchRebuildPlugin } from '@bpmn-diff-viewer-extension/hmr';
+import { watchRebuildPlugin } from '@bpmn-diff-viewer-extension/hmr';
 
 const rootDir = resolve(__dirname);
-const libDir = resolve(rootDir, 'lib');
+const srcDir = resolve(rootDir, 'src');
 
 const isDev = process.env.__DEV__ === 'true';
 const isProduction = !isDev;
@@ -11,23 +12,17 @@ const isProduction = !isDev;
 export default defineConfig({
   resolve: {
     alias: {
-      '@lib': libDir,
+      '@src': srcDir,
     },
   },
-  plugins: [isDev && watchRebuildPlugin({ refresh: true }), isDev && makeEntryPointPlugin()],
+  base: '',
+  plugins: [react(), isDev && watchRebuildPlugin({ refresh: true })],
   publicDir: resolve(rootDir, 'public'),
   build: {
-    lib: {
-      formats: ['iife'],
-      entry: resolve(__dirname, 'lib/index.ts'),
-      name: 'ContentScript',
-      fileName: 'index',
-    },
-    outDir: resolve(rootDir, '..', '..', 'dist', 'content'),
+    outDir: resolve(rootDir, '..', '..', 'dist', 'options'),
     sourcemap: isDev,
     minify: isProduction,
     reportCompressedSize: isProduction,
-    modulePreload: true,
     rollupOptions: {
       external: ['chrome'],
     },

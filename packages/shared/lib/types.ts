@@ -8,28 +8,21 @@ export type User = components['schemas']['simple-user'];
 export type Pull = components['schemas']['pull-request'];
 export type Commit = components['schemas']['commit'];
 
-// chrome extension
-
 export type FileDiff = {
   before?: string;
   after?: string;
 };
 
-export type FileBlob = {
-  blob?: string;
-};
+export const MESSAGE_ID = {
+  GET_GITHUB_PULL_FILES: 'GetPullFiles',
+  GET_GITHUB_COMMIT: 'GetGithubCommit',
+  GET_GITHUB_USER: 'GetGithubUser',
+  SAVE_GITHUB_TOKEN: 'SaveGithubToken',
+  GET_FILE_DIFF: 'GetFileDiff',
+  GET_GITHUB_PULL: 'GetGithubPull',
+} as const;
 
-export enum MessageIds {
-  GetGithubPullFiles = 'GetPullFiles',
-  GetGithubUser = 'GetGitHubUser',
-  SaveGithubToken = 'SaveGitHubToken',
-  SaveKittycadToken = 'SaveKittyCadToken',
-  GetKittycadUser = 'GetKittyCadUser',
-  GetFileDiff = 'GetFileDiff',
-  GetFileBlob = 'GetFileBlob',
-  GetGithubPull = 'GetGithubPull',
-  GetGithubCommit = 'GetGithubCommit',
-}
+export type MessageIds = (typeof MESSAGE_ID)[keyof typeof MESSAGE_ID];
 
 export type MessageGetGithubPullFilesData = {
   owner: string;
@@ -51,13 +44,6 @@ export type MessageGetFileDiff = {
   file: DiffEntry;
 };
 
-export type MessageGetFileBlob = {
-  owner: string;
-  repo: string;
-  sha: string;
-  filename: string;
-};
-
 export type MessageSaveToken = {
   token: string;
 };
@@ -71,13 +57,4 @@ export type Message = {
   data?: MessageGetGithubPullFilesData | MessageGetGithubCommitData | MessageSaveToken | MessageGetFileDiff;
 };
 
-export type MessageResponse =
-  | DiffEntry[]
-  | Pull
-  | Commit
-  | User
-  | MessageSaveToken
-  | FileDiff
-  | FileBlob
-  | MessageError
-  | void;
+export type MessageResponse = DiffEntry[] | Pull | Commit | User | MessageSaveToken | FileDiff | MessageError | void;

@@ -1,6 +1,5 @@
 enum TokenKeys {
   Github = 'gtk',
-  Kittycad = 'ktk',
 }
 
 function setStorage(key: TokenKeys, value: string): Promise<void> {
@@ -25,12 +24,4 @@ export function setStorageGithubToken(token: string): Promise<void> {
 
 export function getStorageGithubToken(): Promise<string> {
   return getStorage(TokenKeys.Github);
-}
-
-export function setStorageKittycadToken(token: string): Promise<void> {
-  return setStorage(TokenKeys.Kittycad, token);
-}
-
-export function getStorageKittycadToken(): Promise<string> {
-  return getStorage(TokenKeys.Kittycad);
 }

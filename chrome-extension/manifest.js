@@ -14,6 +14,7 @@ const manifest = Object.assign({
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
   permissions: ['storage'],
+  options_page: 'options/index.html',
   background: {
     service_worker: 'background.iife.js',
     type: 'module',
@@ -27,10 +28,6 @@ const manifest = Object.assign({
     128: 'icon-128.png',
   },
   content_scripts: [
-    {
-      matches: ['https://github.com/*'],
-      js: ['content/index.iife.js'],
-    },
     {
       matches: ['https://github.com/*'],
       js: ['content-ui/index.iife.js'],

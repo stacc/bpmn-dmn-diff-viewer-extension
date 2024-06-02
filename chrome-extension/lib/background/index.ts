@@ -1,13 +1,15 @@
 import { Octokit } from '@octokit/rest';
 import {
   Message,
+  MessageGetFileDiff,
   MessageGetGithubCommitData,
   MessageGetGithubPullFilesData,
   MessageIds,
   MessageResponse,
   MessageSaveToken,
-} from './interface';
-import {} from '@bpmn-diff-viewer-extension/storage';
+} from './types';
+import { getStorageGithubToken, setStorageGithubToken } from '@bpmn-diff-viewer-extension/storage';
+import { getFileDiff } from './diff';
 
 let github: Octokit | undefined;
 
@@ -94,6 +96,18 @@ chrome.runtime.onMessage.addListener(
       const { token } = message.data as MessageSaveToken;
       saveGithubTokenAndReload(token)
         .then(() => sendResponse({ token }))
+        .catch(error => sendResponse({ error }));
+      return true;
+    }
+
+    if (message.id === MessageIds.GetFileDiff) {
+      if (!github) {
+        sendResponse({ error: noClientError });
+        return false;
+      }
+      const { owner, repo, sha, parentSha, file } = message.data as MessageGetFileDiff;
+      getFileDiff(github, owner, repo, sha, parentSha, file)
+        .then(r => sendResponse(r))
         .catch(error => sendResponse({ error }));
       return true;
     }
