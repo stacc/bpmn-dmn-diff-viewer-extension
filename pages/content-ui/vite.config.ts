@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 import { makeEntryPointPlugin, watchRebuildPlugin } from '@bpmn-diff-viewer-extension/hmr';
-import * as child_process from 'child_process';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
@@ -10,8 +9,8 @@ const srcDir = resolve(rootDir, 'src');
 const isDev = process.env.__DEV__ === 'true';
 const isProduction = !isDev;
 
-function buildTailwindCss() {
-  child_process.execSync('pnpm build:tailwindcss', { stdio: 'inherit' });
+function build() {
+  console.log('Building content-ui');
 }
 
 export default defineConfig({
@@ -21,11 +20,7 @@ export default defineConfig({
     },
   },
   base: '',
-  plugins: [
-    react(),
-    isDev && watchRebuildPlugin({ refresh: true, onStart: buildTailwindCss }),
-    isDev && makeEntryPointPlugin(),
-  ],
+  plugins: [react(), isDev && watchRebuildPlugin({ refresh: true, onStart: build }), isDev && makeEntryPointPlugin()],
   publicDir: resolve(rootDir, 'public'),
   build: {
     lib: {

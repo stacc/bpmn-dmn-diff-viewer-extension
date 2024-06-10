@@ -9,9 +9,7 @@ import { diff } from 'bpmn-js-differ';
 import BpmnModdle from 'bpmn-moddle';
 import { ReactBpmn } from './bpmn-viewer';
 import { DiffEntry, FileDiff, MESSAGE_ID } from '@bpmn-diff-viewer-extension/shared/lib/types';
-import { createShadowRoot } from '@src/web';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import './viewer.css';
 
 async function loadModel(diagramXML: string) {
   try {
@@ -43,7 +41,6 @@ function BpmnDiffPortal({
   const [toolbarContainer, setToolbarContainer] = useState<HTMLElement>();
   const [diffContainer, setDiffContainer] = useState<HTMLElement>();
   const [sourceElements, setSourceElements] = useState<HTMLElement[]>([]);
-  const [shadowRoot, setShadowRoot] = useState<ShadowRoot | null>(null);
 
   useEffect(() => {
     const toolbar = element.querySelector<HTMLElement>('.file-info');
@@ -55,11 +52,9 @@ function BpmnDiffPortal({
 
     if (diff != null) {
       setDiffContainer(diff);
-      const shadowRoot = createShadowRoot(diff);
       const sourceElements = Array.from(diff.children) as HTMLElement[];
       sourceElements.map(n => (n.style.display = 'none'));
       setSourceElements(sourceElements);
-      setShadowRoot(shadowRoot);
     }
   }, [element]);
 
@@ -120,7 +115,7 @@ function BpmnDiffPortal({
               setRichSelected(true);
             }}
           />,
-          shadowRoot!,
+          toolbarContainer,
         )}
       {diffContainer &&
         createPortal(
@@ -133,18 +128,18 @@ function BpmnDiffPortal({
                   <div>
                     {richDiff.diff ? (
                       <PanelGroup direction="horizontal">
-                        <Panel defaultSize={50}>
-                          <ReactBpmn diagramXML={richDiff.before!} className="h-96" />
+                        <Panel defaultSize={50} minSize={20}>
+                          <ReactBpmn diagramXML={richDiff.before!} />
                         </Panel>
                         <PanelResizeHandle />
-                        <Panel defaultSize={50}>
-                          <ReactBpmn diagramXML={richDiff.after!} className="h-96" />
+                        <Panel defaultSize={50} minSize={20}>
+                          <ReactBpmn diagramXML={richDiff.after!} />
                         </Panel>
                       </PanelGroup>
                     ) : richDiff.before ? (
-                      <ReactBpmn diagramXML={richDiff.before!} className="h-96" />
+                      <ReactBpmn diagramXML={richDiff.before!} />
                     ) : richDiff.after ? (
-                      <ReactBpmn diagramXML={richDiff.after!} className="h-96" />
+                      <ReactBpmn diagramXML={richDiff.after!} />
                     ) : (
                       <ErrorMessage />
                     )}
@@ -155,7 +150,7 @@ function BpmnDiffPortal({
               </>
             )}
           </Box>,
-          shadowRoot!,
+          diffContainer,
         )}
     </>
   );

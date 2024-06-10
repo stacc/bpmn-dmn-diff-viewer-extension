@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import BpmnJS from 'bpmn-js/lib/NavigatedViewer';
+import { Box } from '@primer/react';
 
-export function ReactBpmn({ diagramXML, className }: { diagramXML: string; className?: string }) {
+export function ReactBpmn({ diagramXML }: { diagramXML: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -26,5 +27,5 @@ export function ReactBpmn({ diagramXML, className }: { diagramXML: string; class
     };
   }, [diagramXML]);
 
-  return <div className={className} ref={containerRef}></div>;
+  return <Box height="300px" ref={containerRef}></Box>;
 }

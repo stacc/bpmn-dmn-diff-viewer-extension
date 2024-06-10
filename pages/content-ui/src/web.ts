@@ -2,12 +2,6 @@ import { ColorModeWithAuto } from '@primer/react/lib/ThemeProvider';
 import { createRoot, Root } from 'react-dom/client';
 import { extensionToSrcFormat, isFilenameSupported } from './diff';
 import { DiffEntry } from '@bpmn-diff-viewer-extension/shared';
-// eslint-disable-next-line
-// @ts-ignore
-import tailwindcssOutput from './tailwind-output.css?inline';
-// eslint-disable-next-line
-// @ts-ignore
-import bpmnCss from './components/bpmn/viewer.css?inline';
 
 export type GithubPullUrlParams = {
   owner: string;
@@ -102,27 +96,11 @@ export function mapInjectableDiffElements(document: Document, files: DiffEntry[]
 }
 
 export function createReactRoot(document: Document, id: string = 'bpmn-diff-viewer-root'): Root {
-  // TODO: there's probably a better way than this to create a root?
   const root = document.createElement('div');
   root.id = id;
   document.body.appendChild(root);
 
   return createRoot(root);
-}
-
-export function createShadowRoot(node: HTMLElement) {
-  const rootIntoShadow = document.createElement('div');
-  rootIntoShadow.id = 'shadow-root';
-
-  const shadowRoot = node.attachShadow({ mode: 'open' });
-  shadowRoot.appendChild(rootIntoShadow);
-
-  const styleElement = document.createElement('style');
-  styleElement.innerHTML = tailwindcssOutput;
-  styleElement.innerHTML += bpmnCss;
-  shadowRoot.appendChild(styleElement);
-
-  return shadowRoot;
 }
 
 export function getGithubColorMode(document: Document): ColorModeWithAuto {
