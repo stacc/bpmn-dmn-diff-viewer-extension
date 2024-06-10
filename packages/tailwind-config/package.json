@@ -1,5 +1,5 @@
 {
-  "name": "@bpmn-diff-viewer-extension/tailwindcss-config",
+  "name": "@bpmn-dmn-diff-viewer-extension/tailwindcss-config",
   "version": "1.0.0",
   "description": "Tailwind CSS configuration for boilerplate",
   "main": "./tailwind.config.js",

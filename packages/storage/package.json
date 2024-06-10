@@ -1,5 +1,5 @@
 {
-  "name": "@bpmn-diff-viewer-extension/storage",
+  "name": "@bpmn-dmn-diff-viewer-extension/storage",
   "version": "0.0.1",
   "description": "chrome extension storage",
   "private": true,
@@ -21,7 +21,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@bpmn-diff-viewer-extension/tsconfig": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
     "tsup": "8.0.2"
   }
 }

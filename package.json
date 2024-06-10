@@ -1,11 +1,11 @@
 {
-  "name": "bpmn-diff-viewer-extension",
+  "name": "bpmn-dmn-diff-viewer-extension",
   "version": "0.0.1",
-  "description": "A chrome extension for Github to see diff of BPMN files",
+  "description": "A chrome extension for Github to see diff of BPMN and DMN files",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gawdfrey/bpmn-diff-viewer-extension.git"
+    "url": "https://github.com/gawdfrey/bpmn-dmn-diff-viewer-extension.git"
   },
   "scripts": {
     "clean": "rimraf dist && rimraf .turbo && turbo clean",

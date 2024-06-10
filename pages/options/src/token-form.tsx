@@ -6,7 +6,7 @@ export type TokenFormProps = {
   onToken: (token: string) => void;
 };
 
-export function TokenForm({ loading, onToken, children }: PropsWithChildren<TokenFormProps>) {
+export function TokenForm({ loading, onToken }: PropsWithChildren<TokenFormProps>) {
   const [token, setToken] = useState('');
   return (
     <Box>
@@ -23,12 +23,12 @@ export function TokenForm({ loading, onToken, children }: PropsWithChildren<Toke
           <li>
             Open{' '}
             <Link
-              href="https://github.com/settings/tokens/new?scopes=repo&description=BPMN%20diff%20viewer"
+              href="https://github.com/settings/tokens/new?scopes=repo&description=BPMN%20DMN%20diff%20viewer"
               target="_blank">
               this link
             </Link>
           </li>
-          <li>Click on 'Generate token'</li>
+          <li>Click on Generate token</li>
           <li>Copy the provided token</li>
           <li>Paste it in the input above</li>
         </Text>

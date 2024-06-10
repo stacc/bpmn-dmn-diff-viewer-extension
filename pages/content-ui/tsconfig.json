@@ -1,5 +1,5 @@
 {
-  "extends": "@bpmn-diff-viewer-extension/tsconfig/base",
+  "extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/base",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

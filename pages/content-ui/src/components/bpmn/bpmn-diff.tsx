@@ -7,9 +7,8 @@ import { ColorModeWithAuto } from '@primer/react/lib/ThemeProvider';
 import { ErrorMessage } from '../ErrorMessage';
 import { diff } from 'bpmn-js-differ';
 import BpmnModdle from 'bpmn-moddle';
-import { ReactBpmn } from './bpmn-viewer';
-import { DiffEntry, FileDiff, MESSAGE_ID } from '@bpmn-diff-viewer-extension/shared/lib/types';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { BpmnDiffViewer, BpmnViewer } from './bpmn-viewer';
+import { DiffEntry, FileDiff, MESSAGE_ID } from '@bpmn-dmn-diff-viewer-extension/shared/lib/types';
 
 async function loadModel(diagramXML: string) {
   try {
@@ -75,6 +74,7 @@ function BpmnDiffPortal({
           const asyncAfter = loadModel(after);
           const [beforeModel, afterModel] = await Promise.all([asyncBefore, asyncAfter]);
           const diffResult = diff(beforeModel, afterModel);
+          console.log('diffResult', diffResult);
           setRichDiff({
             before,
             after,
@@ -127,19 +127,11 @@ function BpmnDiffPortal({
                 {richDiff ? (
                   <div>
                     {richDiff.diff ? (
-                      <PanelGroup direction="horizontal">
-                        <Panel defaultSize={50} minSize={20}>
-                          <ReactBpmn diagramXML={richDiff.before!} />
-                        </Panel>
-                        <PanelResizeHandle />
-                        <Panel defaultSize={50} minSize={20}>
-                          <ReactBpmn diagramXML={richDiff.after!} />
-                        </Panel>
-                      </PanelGroup>
+                      <BpmnDiffViewer before={richDiff.before!} after={richDiff.after!} />
                     ) : richDiff.before ? (
-                      <ReactBpmn diagramXML={richDiff.before!} />
+                      <BpmnViewer diagramXML={richDiff.before!} />
                     ) : richDiff.after ? (
-                      <ReactBpmn diagramXML={richDiff.after!} />
+                      <BpmnViewer diagramXML={richDiff.after!} />
                     ) : (
                       <ErrorMessage />
                     )}

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
-import { watchRebuildPlugin } from '@bpmn-diff-viewer-extension/hmr';
+import { watchRebuildPlugin } from '@bpmn-dmn-diff-viewer-extension/hmr';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');

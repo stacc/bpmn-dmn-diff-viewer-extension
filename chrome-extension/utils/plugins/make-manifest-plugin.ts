@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ManifestParser, colorLog } from '@bpmn-diff-viewer-extension/dev-utils';
+import { ManifestParser, colorLog } from '@bpmn-dmn-diff-viewer-extension/dev-utils';
 import type { PluginOption } from 'vite';
 import { pathToFileURL } from 'url';
 import * as process from 'process';

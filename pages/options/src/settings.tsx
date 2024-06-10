@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Loading } from './loading';
 import { TokenForm } from './token-form';
 import { UserCard } from './user-card';
-import { User, MESSAGE_ID, MessageIds } from '@bpmn-diff-viewer-extension/shared/lib/types';
+import { User, MESSAGE_ID, MessageIds } from '@bpmn-dmn-diff-viewer-extension/shared/lib/types';
 
 export function Settings() {
   const [githubUser, setGithubUser] = useState<User>();

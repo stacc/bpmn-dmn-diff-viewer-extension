@@ -1,5 +1,5 @@
 {
-  "name": "@bpmn-diff-viewer-extension/options",
+  "name": "@bpmn-dmn-diff-viewer-extension/options",
   "version": "0.0.1",
   "description": "bpmn diff viewer extension options",
   "private": true,
@@ -18,14 +18,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@bpmn-diff-viewer-extension/shared": "workspace:*",
-    "@bpmn-diff-viewer-extension/storage": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
     "@primer/react": "^36.20.0",
     "@radix-ui/themes": "^3.0.5"
   },
   "devDependencies": {
-    "@bpmn-diff-viewer-extension/hmr": "workspace:*",
-    "@bpmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
-    "@bpmn-diff-viewer-extension/tsconfig": "workspace:*"
+    "@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*"
   }
 }

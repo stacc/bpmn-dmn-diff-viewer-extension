@@ -8,7 +8,7 @@ import {
   MessageResponse,
   MessageSaveToken,
 } from './types';
-import { getStorageGithubToken, setStorageGithubToken } from '@bpmn-diff-viewer-extension/storage';
+import { getStorageGithubToken, setStorageGithubToken } from '@bpmn-dmn-diff-viewer-extension/storage';
 import { getFileDiff } from './diff';
 
 let github: Octokit | undefined;

@@ -1,4 +1,4 @@
-const baseConfig = require('@bpmn-diff-viewer-extension/tailwindcss-config');
+const baseConfig = require('@bpmn-dmn-diff-viewer-extension/tailwindcss-config');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

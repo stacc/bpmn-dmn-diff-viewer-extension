@@ -1,5 +1,5 @@
 {
-  "extends": "@bpmn-diff-viewer-extension/tsconfig/utils",
+  "extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/utils",
   "compilerOptions": {
     "outDir": "dist"
   },

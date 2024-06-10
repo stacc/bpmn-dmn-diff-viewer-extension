@@ -18,14 +18,14 @@
   },
   "type": "module",
   "dependencies": {
-    "@bpmn-diff-viewer-extension/storage": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
     "@octokit/rest": "^20.1.1",
     "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
-    "@bpmn-diff-viewer-extension/dev-utils": "workspace:*",
-    "@bpmn-diff-viewer-extension/hmr": "workspace:*",
-    "@bpmn-diff-viewer-extension/tsconfig": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/dev-utils": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
+    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
     "@laynezh/vite-plugin-lib-assets": "^0.5.21",
     "@octokit/openapi-types": "^22.2.0",
     "@octokit/types": "^13.5.0",

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { BaseStorage } from '@bpmn-diff-viewer-extension/storage';
+import { BaseStorage } from '@bpmn-dmn-diff-viewer-extension/storage';
 
 type WrappedPromise = ReturnType<typeof wrapPromise>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

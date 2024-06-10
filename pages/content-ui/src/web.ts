@@ -1,7 +1,7 @@
 import { ColorModeWithAuto } from '@primer/react/lib/ThemeProvider';
 import { createRoot, Root } from 'react-dom/client';
 import { extensionToSrcFormat, isFilenameSupported } from './diff';
-import { DiffEntry } from '@bpmn-diff-viewer-extension/shared';
+import { DiffEntry } from '@bpmn-dmn-diff-viewer-extension/shared';
 
 export type GithubPullUrlParams = {
   owner: string;

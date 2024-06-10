@@ -1,5 +1,5 @@
 {
-  "extends": "@bpmn-diff-viewer-extension/tsconfig/app.json",
+  "extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/app.json",
   "compilerOptions": {
     "baseUrl": "./",
     "types": ["vite/client", "node", "chrome"],

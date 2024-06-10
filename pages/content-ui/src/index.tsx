@@ -9,7 +9,7 @@ import {
 import gitHubInjection from 'github-injection';
 import { createElement } from 'react';
 import { BpmnDiff } from './components/bpmn/bpmn-diff';
-import { Commit, DiffEntry, MESSAGE_ID, Pull } from '@bpmn-diff-viewer-extension/shared';
+import { Commit, DiffEntry, MESSAGE_ID, Pull } from '@bpmn-dmn-diff-viewer-extension/shared';
 
 const root = createReactRoot(document);
 
