@@ -9,8 +9,9 @@ export type Pull = components['schemas']['pull-request'];
 export type Commit = components['schemas']['commit'];
 
 export type FileDiff = {
-  before?: string;
-  after?: string;
+  before?: string | null;
+  after?: string | null;
+  diff?: any | null;
 };
 
 export const MESSAGE_ID = {

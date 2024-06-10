@@ -21,8 +21,8 @@ export type FileBlob = {
 
 export enum MessageIds {
   GetGithubPullFiles = 'GetPullFiles',
-  GetGithubUser = 'GetGitHubUser',
-  SaveGithubToken = 'SaveGitHubToken',
+  GetGithubUser = 'GetGithubUser',
+  SaveGithubToken = 'SaveGithubToken',
   GetFileDiff = 'GetFileDiff',
   GetGithubPull = 'GetGithubPull',
   GetGithubCommit = 'GetGithubCommit',

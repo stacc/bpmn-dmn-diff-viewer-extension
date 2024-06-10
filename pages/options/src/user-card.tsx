@@ -21,7 +21,9 @@ export function UserCard({ login, avatar, serviceAvatar, onSignOut }: UserCardPr
           </Text>
         </Box>
       </Box>
-      <Button onClick={onSignOut}>Sign out</Button>
+      <Box mt={5}>
+        <Button onClick={onSignOut}>Sign out</Button>
+      </Box>
     </Box>
   );
 }

@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Box, ThemeProvider } from '@primer/react';
 import { createPortal } from 'react-dom';
-import { Loading } from './Loading';
-import { SourceRichToggle } from './SourceRichToggle';
+import { Loading } from '../Loading';
+import { SourceRichToggle } from '../SourceRichToggle';
 import { ColorModeWithAuto } from '@primer/react/lib/ThemeProvider';
-import { ErrorMessage } from './ErrorMessage';
+import { ErrorMessage } from '../ErrorMessage';
 import { diff } from 'bpmn-js-differ';
 import BpmnModdle from 'bpmn-moddle';
-import BpmnJS from 'bpmn-js/lib/Viewer';
-import './viewer.css';
+import { ReactBpmn } from './bpmn-viewer';
 import { DiffEntry, FileDiff, MESSAGE_ID } from '@bpmn-diff-viewer-extension/shared/lib/types';
+import { createShadowRoot } from '@src/web';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import './viewer.css';
 
 async function loadModel(diagramXML: string) {
   try {
-    var loadedResult = await new BpmnModdle().fromXML(diagramXML);
+    const loadedResult = await new BpmnModdle().fromXML(diagramXML);
     return loadedResult.rootElement;
   } catch (err) {
     console.log('something went wrong!');
   }
 }
 
-function CadDiffPortal({
+function BpmnDiffPortal({
   element,
   file,
   owner,
@@ -41,6 +43,7 @@ function CadDiffPortal({
   const [toolbarContainer, setToolbarContainer] = useState<HTMLElement>();
   const [diffContainer, setDiffContainer] = useState<HTMLElement>();
   const [sourceElements, setSourceElements] = useState<HTMLElement[]>([]);
+  const [shadowRoot, setShadowRoot] = useState<ShadowRoot | null>(null);
 
   useEffect(() => {
     const toolbar = element.querySelector<HTMLElement>('.file-info');
@@ -49,19 +52,16 @@ function CadDiffPortal({
     }
 
     const diff = element.querySelector<HTMLElement>('.js-file-content');
+
     if (diff != null) {
       setDiffContainer(diff);
+      const shadowRoot = createShadowRoot(diff);
       const sourceElements = Array.from(diff.children) as HTMLElement[];
       sourceElements.map(n => (n.style.display = 'none'));
       setSourceElements(sourceElements);
+      setShadowRoot(shadowRoot);
     }
   }, [element]);
-
-  const viewer = new BpmnJS({
-    container: document.getElementById('bpmn-diff-viewer-mount')!,
-    height: '100%',
-    width: '100%',
-  });
 
   useEffect(() => {
     (async () => {
@@ -75,16 +75,31 @@ function CadDiffPortal({
       } else {
         const before = response.before;
         const after = response.after;
-
         if (before && after) {
           const asyncBefore = loadModel(before);
           const asyncAfter = loadModel(after);
           const [beforeModel, afterModel] = await Promise.all([asyncBefore, asyncAfter]);
           const diffResult = diff(beforeModel, afterModel);
-          viewer.importXML(after);
-          setRichDiff(diffResult);
+          setRichDiff({
+            before,
+            after,
+            diff: diffResult,
+          });
         }
-        setRichDiff(response as FileDiff);
+        if (before && !after) {
+          setRichDiff({
+            before,
+            after: null,
+            diff: null,
+          });
+        }
+        if (!before && after) {
+          setRichDiff({
+            before: null,
+            after,
+            diff: null,
+          });
+        }
         setLoading(false);
       }
     })();
@@ -105,14 +120,42 @@ function CadDiffPortal({
               setRichSelected(true);
             }}
           />,
-          toolbarContainer,
+          shadowRoot!,
         )}
       {diffContainer &&
         createPortal(
-          <Box sx={{ display: richSelected ? 'block' : 'none' }}>
-            {loading ? <Loading /> : <>{richDiff ? <div id="bpmn-diff-viewer-mount"></div> : <ErrorMessage />}</>}
+          <Box sx={{ display: richSelected ? 'block' : 'none', height: '100%' }}>
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                {richDiff ? (
+                  <div>
+                    {richDiff.diff ? (
+                      <PanelGroup direction="horizontal">
+                        <Panel defaultSize={50}>
+                          <ReactBpmn diagramXML={richDiff.before!} className="h-96" />
+                        </Panel>
+                        <PanelResizeHandle />
+                        <Panel defaultSize={50}>
+                          <ReactBpmn diagramXML={richDiff.after!} className="h-96" />
+                        </Panel>
+                      </PanelGroup>
+                    ) : richDiff.before ? (
+                      <ReactBpmn diagramXML={richDiff.before!} className="h-96" />
+                    ) : richDiff.after ? (
+                      <ReactBpmn diagramXML={richDiff.after!} className="h-96" />
+                    ) : (
+                      <ErrorMessage />
+                    )}
+                  </div>
+                ) : (
+                  <ErrorMessage />
+                )}
+              </>
+            )}
           </Box>,
-          diffContainer,
+          shadowRoot!,
         )}
     </>
   );
@@ -127,11 +170,11 @@ export type CadDiffPageProps = {
   colorMode: ColorModeWithAuto;
 };
 
-export function CadDiffPage({ map, owner, repo, sha, parentSha, colorMode }: CadDiffPageProps): React.ReactElement {
+export function BpmnDiff({ map, owner, repo, sha, parentSha, colorMode }: CadDiffPageProps): React.ReactElement {
   return (
     <ThemeProvider colorMode={colorMode}>
       {map.map(m => (
-        <CadDiffPortal
+        <BpmnDiffPortal
           key={m.file.filename}
           element={m.element}
           file={m.file}

@@ -68,6 +68,7 @@ chrome.runtime.onMessage.addListener(
     }
 
     if (message.id === MessageIds.GetGithubCommit) {
+      console.log('github', github);
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -81,6 +82,7 @@ chrome.runtime.onMessage.addListener(
     }
 
     if (message.id === MessageIds.GetGithubUser) {
+      console.log('github', github);
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -94,6 +96,7 @@ chrome.runtime.onMessage.addListener(
 
     if (message.id === MessageIds.SaveGithubToken) {
       const { token } = message.data as MessageSaveToken;
+      console.log('token', token);
       saveGithubTokenAndReload(token)
         .then(() => sendResponse({ token }))
         .catch(error => sendResponse({ error }));

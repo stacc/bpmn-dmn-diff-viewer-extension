@@ -987,3 +987,7 @@ svg.new-parent {
 .djs-element .djs-hit-all {
   cursor: move;
 }
+
+.bjs-powered-by {
+  display: none;
+}

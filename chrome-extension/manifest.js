@@ -14,7 +14,9 @@ const manifest = Object.assign({
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
   permissions: ['storage'],
-  options_page: 'options/index.html',
+  options_ui: {
+    page: 'options/index.html',
+  },
   background: {
     service_worker: 'background.iife.js',
     type: 'module',

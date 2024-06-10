@@ -8,8 +8,8 @@ import {
 } from './web';
 import gitHubInjection from 'github-injection';
 import { createElement } from 'react';
-import { CadDiffPage } from './components/CadDiffPage';
-import { Commit, DiffEntry, MESSAGE_ID, Pull } from '../../../packages/shared/lib/types';
+import { BpmnDiff } from './components/bpmn/bpmn-diff';
+import { Commit, DiffEntry, MESSAGE_ID, Pull } from '@bpmn-diff-viewer-extension/shared';
 
 const root = createReactRoot(document);
 
@@ -23,7 +23,7 @@ async function injectDiff(
 ) {
   const map = mapInjectableDiffElements(document, files);
   const colorMode = getGithubColorMode(document);
-  const cadDiffPage = createElement(CadDiffPage, {
+  const cadDiffPage = createElement(BpmnDiff, {
     owner,
     repo,
     sha,
@@ -31,6 +31,7 @@ async function injectDiff(
     map,
     colorMode,
   });
+
   root.render(cadDiffPage);
 }
 
