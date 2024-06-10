@@ -114,5 +114,6 @@ chrome.runtime.onMessage.addListener(
         .catch(error => sendResponse({ error }));
       return true;
     }
+    return;
   },
 );
