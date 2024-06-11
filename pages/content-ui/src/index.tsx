@@ -5,11 +5,13 @@ import {
   createReactRoot,
   getGithubCommitWithinPullUrlParams,
   getGithubColorMode,
+  getSupportedWebDiffElements,
 } from './web';
 import gitHubInjection from 'github-injection';
 import { createElement } from 'react';
 import { BpmnDiff } from './components/bpmn/bpmn-diff';
 import { Commit, DiffEntry, MESSAGE_ID, Pull } from '@bpmn-dmn-diff-viewer-extension/shared';
+import { NotLoggedInPage } from './components/NotLoggedIn';
 
 const root = createReactRoot(document);
 
@@ -23,7 +25,7 @@ async function injectDiff(
 ) {
   const map = mapInjectableDiffElements(document, files);
   const colorMode = getGithubColorMode(document);
-  const cadDiffPage = createElement(BpmnDiff, {
+  const bpmnDiffPage = createElement(BpmnDiff, {
     owner,
     repo,
     sha,
@@ -32,7 +34,17 @@ async function injectDiff(
     colorMode,
   });
 
-  root.render(cadDiffPage);
+  root.render(bpmnDiffPage);
+}
+
+async function injectNotLoggedInPage(document: Document) {
+  const elements = getSupportedWebDiffElements(document);
+  const colorMode = getGithubColorMode(document);
+  const notLoggedInPage = createElement(NotLoggedInPage, {
+    colorMode,
+    elements,
+  });
+  root.render(notLoggedInPage);
 }
 
 async function injectPullDiff(owner: string, repo: string, pull: number, document: Document) {
@@ -69,6 +81,16 @@ async function injectCommitDiff(owner: string, repo: string, sha: string, docume
 async function run() {
   const url = window.location.href;
   const pullParams = getGithubPullUrlParams(url);
+
+  const response = await chrome.runtime.sendMessage({
+    id: MESSAGE_ID.GET_GITHUB_USER,
+  });
+
+  if (response && 'error' in response) {
+    await injectNotLoggedInPage(window.document);
+    return;
+  }
+
   if (pullParams) {
     const { owner, repo, pull } = pullParams;
     console.log('Found PR diff: ', owner, repo, pull);

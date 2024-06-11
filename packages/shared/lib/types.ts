@@ -11,7 +11,7 @@ export type Commit = components['schemas']['commit'];
 export type FileDiff = {
   before?: string | null;
   after?: string | null;
-  diff?: any | null;
+  diff?: Record<string, string> | null;
 };
 
 export const MESSAGE_ID = {
@@ -21,6 +21,7 @@ export const MESSAGE_ID = {
   SAVE_GITHUB_TOKEN: 'SaveGithubToken',
   GET_FILE_DIFF: 'GetFileDiff',
   GET_GITHUB_PULL: 'GetGithubPull',
+  OPEN_OPTIONS_PAGE: 'OpenOptionsPage',
 } as const;
 
 export type MessageIds = (typeof MESSAGE_ID)[keyof typeof MESSAGE_ID];

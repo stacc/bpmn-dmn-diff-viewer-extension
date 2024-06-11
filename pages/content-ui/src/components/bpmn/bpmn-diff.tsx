@@ -147,7 +147,7 @@ function BpmnDiffPortal({
   );
 }
 
-export type CadDiffPageProps = {
+export type BPMNDiffPageProps = {
   map: { element: HTMLElement; file: DiffEntry }[];
   owner: string;
   repo: string;
@@ -156,7 +156,7 @@ export type CadDiffPageProps = {
   colorMode: ColorModeWithAuto;
 };
 
-export function BpmnDiff({ map, owner, repo, sha, parentSha, colorMode }: CadDiffPageProps): React.ReactElement {
+export function BpmnDiff({ map, owner, repo, sha, parentSha, colorMode }: BPMNDiffPageProps): React.ReactElement {
   return (
     <ThemeProvider colorMode={colorMode}>
       {map.map(m => (

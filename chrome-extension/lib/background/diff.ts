@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/rest';
-import { ContentFile, DiffEntry, FileDiff } from './types';
+import { ContentFile, DiffEntry, FileDiff } from '@bpmn-dmn-diff-viewer-extension/shared';
 
 export const extensionToSrcFormat: {
   [extension: string]: string;

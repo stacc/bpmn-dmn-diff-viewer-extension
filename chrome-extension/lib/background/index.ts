@@ -1,13 +1,13 @@
 import { Octokit } from '@octokit/rest';
 import {
   Message,
+  MESSAGE_ID,
   MessageGetFileDiff,
   MessageGetGithubCommitData,
   MessageGetGithubPullFilesData,
-  MessageIds,
   MessageResponse,
   MessageSaveToken,
-} from './types';
+} from '@bpmn-dmn-diff-viewer-extension/shared';
 import { getStorageGithubToken, setStorageGithubToken } from '@bpmn-dmn-diff-viewer-extension/storage';
 import { getFileDiff } from './diff';
 
@@ -41,7 +41,7 @@ const noClientError = new Error('API client is undefined');
 chrome.runtime.onMessage.addListener(
   (message: Message, sender: chrome.runtime.MessageSender, sendResponse: (response: MessageResponse) => void) => {
     console.log(`Received ${message.id} from ${sender.id}`);
-    if (message.id === MessageIds.GetGithubPullFiles) {
+    if (message.id === MESSAGE_ID.GET_GITHUB_PULL_FILES) {
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -54,7 +54,7 @@ chrome.runtime.onMessage.addListener(
       return true;
     }
 
-    if (message.id === MessageIds.GetGithubPull) {
+    if (message.id === MESSAGE_ID.GET_GITHUB_PULL) {
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -67,7 +67,7 @@ chrome.runtime.onMessage.addListener(
       return true;
     }
 
-    if (message.id === MessageIds.GetGithubCommit) {
+    if (message.id === MESSAGE_ID.GET_GITHUB_COMMIT) {
       console.log('github', github);
       if (!github) {
         sendResponse({ error: noClientError });
@@ -81,8 +81,7 @@ chrome.runtime.onMessage.addListener(
       return true;
     }
 
-    if (message.id === MessageIds.GetGithubUser) {
-      console.log('github', github);
+    if (message.id === MESSAGE_ID.GET_GITHUB_USER) {
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -94,7 +93,7 @@ chrome.runtime.onMessage.addListener(
       return true;
     }
 
-    if (message.id === MessageIds.SaveGithubToken) {
+    if (message.id === MESSAGE_ID.SAVE_GITHUB_TOKEN) {
       const { token } = message.data as MessageSaveToken;
       console.log('token', token);
       saveGithubTokenAndReload(token)
@@ -103,7 +102,7 @@ chrome.runtime.onMessage.addListener(
       return true;
     }
 
-    if (message.id === MessageIds.GetFileDiff) {
+    if (message.id === MESSAGE_ID.GET_FILE_DIFF) {
       if (!github) {
         sendResponse({ error: noClientError });
         return false;
@@ -114,6 +113,19 @@ chrome.runtime.onMessage.addListener(
         .catch(error => sendResponse({ error }));
       return true;
     }
+
+    if (message.id === MESSAGE_ID.OPEN_OPTIONS_PAGE) {
+      chrome.runtime.openOptionsPage();
+      return true;
+    }
+
     return;
   },
 );
+
+chrome.runtime.onInstalled.addListener(function (object) {
+  const internalUrl = chrome.runtime.getURL('onboarding.html');
+  if (object.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    chrome.tabs.create({ url: internalUrl });
+  }
+});

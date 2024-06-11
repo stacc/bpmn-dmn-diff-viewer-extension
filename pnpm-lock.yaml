@@ -112,6 +112,9 @@ importers:
       '@bpmn-dmn-diff-viewer-extension/hmr':
         specifier: workspace:*
         version: link:../packages/hmr
+      '@bpmn-dmn-diff-viewer-extension/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@bpmn-dmn-diff-viewer-extension/tsconfig':
         specifier: workspace:*
         version: link:../packages/tsconfig
