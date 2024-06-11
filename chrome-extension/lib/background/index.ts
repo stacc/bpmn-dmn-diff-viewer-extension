@@ -48,7 +48,7 @@ chrome.runtime.onMessage.addListener(
       }
       const { owner, repo, pull } = message.data as MessageGetGithubPullFilesData;
       github.rest.pulls
-        .listFiles({ owner, repo, pull_number: pull })
+        .listFiles({ owner, repo, pull_number: pull, per_page: 300 })
         .then(r => sendResponse(r.data))
         .catch(error => sendResponse({ error }));
       return true;
@@ -61,7 +61,7 @@ chrome.runtime.onMessage.addListener(
       }
       const { owner, repo, pull } = message.data as MessageGetGithubPullFilesData;
       github.rest.pulls
-        .get({ owner, repo, pull_number: pull })
+        .get({ owner, repo, pull_number: pull, per_page: 300 })
         .then(r => sendResponse(r.data))
         .catch(error => sendResponse({ error }));
       return true;
@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener(
       }
       const { owner, repo, sha } = message.data as MessageGetGithubCommitData;
       github.rest.repos
-        .getCommit({ owner, repo, ref: sha })
+        .getCommit({ owner, repo, ref: sha, per_page: 300 })
         .then(r => sendResponse(r.data))
         .catch(error => sendResponse({ error }));
       return true;

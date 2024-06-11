@@ -29,7 +29,7 @@ export function BpmnViewer({ diagramXML }: { diagramXML: string }) {
     };
   }, [diagramXML]);
 
-  return <Box height="300px" ref={containerRef}></Box>;
+  return <Box height="500px" ref={containerRef}></Box>;
 }
 
 export function BpmnDiffViewer({ before, after }: { before: string; after: string }) {
@@ -127,11 +127,11 @@ export function BpmnDiffViewer({ before, after }: { before: string; after: strin
         gap: '10px',
       }}>
       <Panel defaultSize={50} minSize={20}>
-        <Box height="300px" ref={beforeContainer} />
+        <Box height="500px" ref={beforeContainer} />
       </Panel>
       <PanelResizeHandle />
       <Panel defaultSize={50} minSize={20}>
-        <Box height="300px" ref={afterContainer} />
+        <Box height="500px" ref={afterContainer} />
       </Panel>
     </PanelGroup>
   );

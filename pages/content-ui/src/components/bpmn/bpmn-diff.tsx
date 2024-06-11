@@ -74,7 +74,6 @@ function BpmnDiffPortal({
           const asyncAfter = loadModel(after);
           const [beforeModel, afterModel] = await Promise.all([asyncBefore, asyncAfter]);
           const diffResult = diff(beforeModel, afterModel);
-          console.log('diffResult', diffResult);
           setRichDiff({
             before,
             after,
