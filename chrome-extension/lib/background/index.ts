@@ -4,12 +4,13 @@ import {
   MESSAGE_ID,
   MessageGetFileDiff,
   MessageGetGithubCommitData,
+  MessageGetGithubFilePreviewData,
   MessageGetGithubPullFilesData,
   MessageResponse,
   MessageSaveToken,
 } from '@bpmn-dmn-diff-viewer-extension/shared';
 import { getStorageGithubToken, setStorageGithubToken } from '@bpmn-dmn-diff-viewer-extension/storage';
-import { getFileDiff } from './diff';
+import { getContentString, getFileDiff } from './diff';
 
 let github: Octokit | undefined;
 
@@ -50,6 +51,17 @@ chrome.runtime.onMessage.addListener(
       github.rest.pulls
         .listFiles({ owner, repo, pull_number: pull, per_page: 300 })
         .then(r => sendResponse(r.data))
+        .catch(error => sendResponse({ error }));
+      return true;
+    }
+    if (message.id === MESSAGE_ID.GET_GITHUB_FILE_PREVIEW) {
+      if (!github) {
+        sendResponse({ error: noClientError });
+        return false;
+      }
+      const { owner, repo, path, ref } = message.data as MessageGetGithubFilePreviewData;
+      getContentString({ github, owner, repo, ref, path })
+        .then(content => sendResponse({ content }))
         .catch(error => sendResponse({ error }));
       return true;
     }

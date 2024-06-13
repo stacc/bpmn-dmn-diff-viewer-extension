@@ -12,15 +12,21 @@ export function isFilenameSupported(filename: string): boolean {
   return !!(extension && extensionToSrcFormat[extension]);
 }
 
-export async function getContentString(
-  octokit: Octokit,
-  owner: string,
-  repo: string,
-  ref: string,
-  path: string,
-): Promise<string> {
+export async function getContentString({
+  github,
+  owner,
+  repo,
+  ref,
+  path,
+}: {
+  github: Octokit;
+  owner: string;
+  repo: string;
+  ref: string;
+  path: string;
+}): Promise<string> {
   // First get some info on the blob with the Contents api
-  const content = await octokit.rest.repos.getContent({
+  const content = await github.rest.repos.getContent({
     owner,
     repo,
     path,
@@ -50,18 +56,18 @@ export async function getFileDiff(
   }
 
   if (status === 'modified') {
-    const before = await getContentString(github, owner, repo, parentSha, filename);
-    const after = await getContentString(github, owner, repo, sha, filename);
+    const before = await getContentString({ github, owner, repo, ref: parentSha, path: filename });
+    const after = await getContentString({ github, owner, repo, ref: sha, path: filename });
     return { before, after };
   }
 
   if (status === 'added') {
-    const after = await getContentString(github, owner, repo, sha, filename);
+    const after = await getContentString({ github, owner, repo, ref: sha, path: filename });
     return { after };
   }
 
   if (status === 'removed') {
-    const before = await getContentString(github, owner, repo, parentSha, filename);
+    const before = await getContentString({ github, owner, repo, ref: parentSha, path: filename });
     return { before };
   }
 

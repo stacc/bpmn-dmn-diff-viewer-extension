@@ -3,6 +3,25 @@ import { createRoot, Root } from 'react-dom/client';
 import { extensionToSrcFormat, isFilenameSupported } from './diff';
 import { DiffEntry } from '@bpmn-dmn-diff-viewer-extension/shared';
 
+export type GithubFilePreviewParams = {
+  owner: string;
+  repo: string;
+  path: string;
+  ref: string;
+};
+
+export function getGithubFilePreviewUrlParams(url: string): GithubFilePreviewParams | undefined {
+  const regex =
+    /https:\/\/github\.com\/([a-zA-Z0-9_.-]+)\/([a-zA-Z0-9_.-]+)\/blob\/([a-zA-Z0-9_.-]+)\/([a-zA-Z0-9_/.-]+)/;
+  const result = regex.exec(url);
+  if (!result) {
+    return undefined;
+  }
+  const [, owner, repo, ref, path] = result;
+  console.log('Found a supported Github File Preview URL:', owner, repo, path);
+  return { owner, repo, path: `/${path}`, ref };
+}
+
 export type GithubPullUrlParams = {
   owner: string;
   repo: string;

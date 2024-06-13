@@ -5,9 +5,15 @@ export type SourceRichToggleProps = {
   richSelected: boolean;
   onSourceSelected?: () => void;
   onRichSelected?: () => void;
+  negativeMargin?: boolean;
 };
 
-export function SourceRichToggle({ richSelected, onSourceSelected, onRichSelected }: SourceRichToggleProps) {
+export function SourceRichToggle({
+  richSelected,
+  onSourceSelected,
+  onRichSelected,
+  negativeMargin = true,
+}: SourceRichToggleProps) {
   const commonButtonSx = {
     color: 'fg.subtle',
     width: '40px',
@@ -18,7 +24,7 @@ export function SourceRichToggle({ richSelected, onSourceSelected, onRichSelecte
   const sourceText = 'Display the source diff';
   const richText = 'Display the rich diff';
   return (
-    <ButtonGroup sx={{ float: 'right', mr: '-8px' }}>
+    <ButtonGroup sx={{ float: 'right', mr: negativeMargin ? '-8px' : '8px' }}>
       <Tooltip aria-label={sourceText} direction="w" sx={commonTooltipSx}>
         <IconButton
           aria-label={sourceText}

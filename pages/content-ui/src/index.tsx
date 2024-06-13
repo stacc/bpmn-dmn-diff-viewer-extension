@@ -6,12 +6,14 @@ import {
   getGithubCommitWithinPullUrlParams,
   getGithubColorMode,
   getSupportedWebDiffElements,
+  getGithubFilePreviewUrlParams,
 } from './web';
 import gitHubInjection from 'github-injection';
 import { createElement } from 'react';
 import { BpmnDiff } from './components/bpmn/bpmn-diff';
-import { Commit, DiffEntry, MESSAGE_ID, Pull } from '@bpmn-dmn-diff-viewer-extension/shared';
+import { Commit, DiffEntry, FilePreview, MESSAGE_ID, Pull } from '@bpmn-dmn-diff-viewer-extension/shared';
 import { NotLoggedInPage } from './components/NotLoggedIn';
+import { BPMNFilePreviewPage } from './components/bpmn/bpmn-file-preview';
 
 const root = createReactRoot(document);
 
@@ -47,7 +49,17 @@ async function injectNotLoggedInPage(document: Document) {
   root.render(notLoggedInPage);
 }
 
-async function injectPullDiff(owner: string, repo: string, pull: number, document: Document) {
+async function injectFilePreview({ document, content }: { document: Document; content: string }) {
+  const colorMode = getGithubColorMode(document);
+  const filePreviewPage = createElement(BPMNFilePreviewPage, {
+    colorMode,
+    content,
+    document,
+  });
+  root.render(filePreviewPage);
+}
+
+async function getPullDiff(owner: string, repo: string, pull: number, document: Document) {
   const filesResponse = await chrome.runtime.sendMessage({
     id: MESSAGE_ID.GET_GITHUB_PULL_FILES,
     data: { owner, repo, pull },
@@ -65,7 +77,7 @@ async function injectPullDiff(owner: string, repo: string, pull: number, documen
   await injectDiff(owner, repo, sha, parentSha, files, document);
 }
 
-async function injectCommitDiff(owner: string, repo: string, sha: string, document: Document) {
+async function getCommitDiff(owner: string, repo: string, sha: string, document: Document) {
   const response = await chrome.runtime.sendMessage({
     id: MESSAGE_ID.GET_GITHUB_COMMIT,
     data: { owner, repo, sha },
@@ -76,6 +88,17 @@ async function injectCommitDiff(owner: string, repo: string, sha: string, docume
   if (!commit.parents.length) throw Error('Found no commit parent');
   const parentSha = commit.parents[0].sha;
   await injectDiff(owner, repo, sha, parentSha, commit.files, document);
+}
+
+async function getFilePreview(owner: string, repo: string, path: string, ref: string, document: Document) {
+  const response = await chrome.runtime.sendMessage({
+    id: MESSAGE_ID.GET_GITHUB_FILE_PREVIEW,
+    data: { owner, repo, path, ref },
+  });
+  if ('error' in response) throw response.error;
+  const { content } = response as FilePreview;
+  if (!content) throw Error('Found no file content');
+  await injectFilePreview({ content, document });
 }
 
 async function run() {
@@ -94,7 +117,16 @@ async function run() {
   if (pullParams) {
     const { owner, repo, pull } = pullParams;
     console.log('Found PR diff: ', owner, repo, pull);
-    await injectPullDiff(owner, repo, pull, window.document);
+    await getPullDiff(owner, repo, pull, window.document);
+    return;
+  }
+
+  const previewParams = getGithubFilePreviewUrlParams(url);
+  if (previewParams) {
+    const { owner, repo, path, ref } = previewParams;
+    if (!path.endsWith('.bpmn') && !path.endsWith('.dmn')) return;
+    console.log('Found file preview diff: ', owner, repo, path);
+    await getFilePreview(owner, repo, path, ref, window.document);
     return;
   }
 
@@ -102,7 +134,7 @@ async function run() {
   if (commitParams) {
     const { owner, repo, sha } = commitParams;
     console.log('Found commit diff: ', owner, repo, sha);
-    await injectCommitDiff(owner, repo, sha, window.document);
+    await getCommitDiff(owner, repo, sha, window.document);
     return;
   }
 
@@ -111,7 +143,7 @@ async function run() {
     const { owner, repo, pull, sha } = commitWithinPullParams;
     console.log('Found commit diff within pull: ', owner, repo, pull, sha);
     // TODO: understand if more things are needed here for this special case
-    await injectCommitDiff(owner, repo, sha, window.document);
+    await getCommitDiff(owner, repo, sha, window.document);
     return;
   }
 }
@@ -142,5 +174,3 @@ gitHubInjection(() => {
   run();
   waitForLateDiffNodes(() => run());
 });
-
-gitHubInjection();
