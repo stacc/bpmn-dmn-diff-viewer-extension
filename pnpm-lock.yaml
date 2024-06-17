@@ -205,8 +205,8 @@ importers:
         specifier: ^19.9.0
         version: 19.9.0(react@18.3.1)
       '@primer/react':
-        specifier: ^36.20.0
-        version: 36.20.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+        specifier: ^36.22.0
+        version: 36.22.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
       bpmn-js:
         specifier: ^17.8.1
         version: 17.8.1
@@ -263,8 +263,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/storage
       '@primer/react':
-        specifier: ^36.20.0
-        version: 36.20.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+        specifier: ^36.22.0
+        version: 36.22.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
       '@radix-ui/themes':
         specifier: ^3.0.5
         version: 3.0.5(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
@@ -731,8 +731,8 @@ packages:
   '@github/paste-markdown@1.5.3':
     resolution: {integrity: sha512-PzZ1b3PaqBzYqbT4fwKEhiORf38h2OcGp2+JdXNNM7inZ7egaSmfmhyNkQILpqWfS0AYtRS3CDq6z03eZ8yOMQ==}
 
-  '@github/relative-time-element@4.4.0':
-    resolution: {integrity: sha512-CrI6oAecoahG7PF5dsgjdvlF5kCtusVMjg810EULD81TvnDsP+k/FRi/ClFubWLgBo4EGpr2EfvmumtqQFo7ow==}
+  '@github/relative-time-element@4.4.2':
+    resolution: {integrity: sha512-wTXunu3hmuGljA5CHaaoUIKV0oI35wno0FKJl2yqKplTRnsCA5bPNj4bDeVIubkuskql6jwionWLlGM1Y6QLaw==}
 
   '@github/tab-container-element@4.8.0':
     resolution: {integrity: sha512-LxPe4RSNdmfXcjM5APzbwjzyD3aDOqtoKpKgGc7aXucp8t6SWetbJ5lNoZSRCNtKugUkOLnKY1+Zr5DcdbHrhg==}
@@ -877,8 +877,8 @@ packages:
   '@primer/primitives@7.17.1':
     resolution: {integrity: sha512-SiPzEb+up1nDpV2NGwNiY8m6sGnF3OUqRb0has5s6T40vq6Li/g3cYVgl+oolEa4DUoNygEPs09jwJt24f/3zg==}
 
-  '@primer/react@36.20.0':
-    resolution: {integrity: sha512-UBKsbwFpve0nQFciWWjOkwKch1H9nuo/WuaT6rP32c+WnJ1xbXS0FnPsn/LkPjypfUbRPqBb6BUM8leNTKcriA==}
+  '@primer/react@36.22.0':
+    resolution: {integrity: sha512-xKDdFNgjw+3e+fI/hXIOBWrWWPHjFds+7leTWZrrITMROZE6GdPFSfjTZzK08Z2Ayqt1ShOFUWi40LMauptYoQ==}
     engines: {node: '>=12', npm: '>=7'}
     peerDependencies:
       '@types/react': ^18.0.0
@@ -4451,7 +4451,7 @@ snapshots:
 
   '@github/paste-markdown@1.5.3': {}
 
-  '@github/relative-time-element@4.4.0': {}
+  '@github/relative-time-element@4.4.2': {}
 
   '@github/tab-container-element@4.8.0': {}
 
@@ -4608,12 +4608,12 @@ snapshots:
 
   '@primer/primitives@7.17.1': {}
 
-  '@primer/react@36.20.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))':
+  '@primer/react@36.22.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.24.6)(react-dom@18.2.0(react@18.3.1))(react-is@18.3.1)(react@18.3.1))':
     dependencies:
       '@github/combobox-nav': 2.3.1
       '@github/markdown-toolbar-element': 2.2.3
       '@github/paste-markdown': 1.5.3
-      '@github/relative-time-element': 4.4.0
+      '@github/relative-time-element': 4.4.2
       '@github/tab-container-element': 4.8.0
       '@lit-labs/react': 1.2.1
       '@oddbird/popover-polyfill': 0.3.8
@@ -7446,7 +7446,7 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2)):
+  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.2.2)):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.3
@@ -7918,7 +7918,7 @@ snapshots:
       postcss: 8.4.38
       postcss-import: 15.1.0(postcss@8.4.38)
       postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.2.2))
       postcss-nested: 6.0.1(postcss@8.4.38)
       postcss-selector-parser: 6.1.0
       resolve: 1.22.8
@@ -8027,7 +8027,7 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.2.2))
       resolve-from: 5.0.0
       rollup: 4.18.0
       source-map: 0.8.0-beta.0

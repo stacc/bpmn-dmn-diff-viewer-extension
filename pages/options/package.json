@@ -20,7 +20,7 @@
   "dependencies": {
     "@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
     "@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
-    "@primer/react": "^36.20.0",
+    "@primer/react": "^36.22.0",
     "@radix-ui/themes": "^3.0.5"
   },
   "devDependencies": {
