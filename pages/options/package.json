@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-dmn-diff-viewer-extension/options",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "bpmn diff viewer extension options",
   "private": true,
   "sideEffects": true,

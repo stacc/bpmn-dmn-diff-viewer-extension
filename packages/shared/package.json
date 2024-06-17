@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-dmn-diff-viewer-extension/shared",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "chrome extension shared code",
   "private": true,
   "sideEffects": false,
