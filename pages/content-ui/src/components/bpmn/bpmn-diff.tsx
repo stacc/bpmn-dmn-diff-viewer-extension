@@ -98,7 +98,6 @@ function BpmnDiffPortal({
       }
     })();
   }, [file, owner, repo, sha, parentSha]);
-
   return (
     <>
       {toolbarContainer &&
@@ -126,7 +125,7 @@ function BpmnDiffPortal({
                 {richDiff ? (
                   <div>
                     {richDiff.diff ? (
-                      <BpmnDiffViewer before={richDiff.before!} after={richDiff.after!} />
+                      <BpmnDiffViewer before={richDiff.before!} after={richDiff.after!} diff={richDiff.diff} />
                     ) : richDiff.before ? (
                       <BpmnViewer diagramXML={richDiff.before!} />
                     ) : richDiff.after ? (

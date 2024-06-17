@@ -14,6 +14,7 @@ import { BpmnDiff } from './components/bpmn/bpmn-diff';
 import { Commit, DiffEntry, FilePreview, MESSAGE_ID, Pull } from '@bpmn-dmn-diff-viewer-extension/shared';
 import { NotLoggedInPage } from './components/NotLoggedIn';
 import { BPMNFilePreviewPage } from './components/bpmn/bpmn-file-preview';
+import bpmnCSS from '@src/components/bpmn/diff.css?inline';
 
 const root = createReactRoot(document);
 
@@ -35,6 +36,12 @@ async function injectDiff(
     map,
     colorMode,
   });
+
+  const body = document.body;
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = bpmnCSS;
+  body.insertBefore(style, body.firstChild);
 
   root.render(bpmnDiffPage);
 }

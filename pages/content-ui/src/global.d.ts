@@ -2,3 +2,4 @@
 declare module 'github-injection';
 declare module 'bpmn-js-differ';
 declare module 'bpmn-moddle';
+declare module '*.css?inline';

@@ -11,7 +11,8 @@ export type Commit = components['schemas']['commit'];
 export type FileDiff = {
   before?: string | null;
   after?: string | null;
-  diff?: Record<string, string> | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  diff?: any;
 };
 
 export type FilePreview = {

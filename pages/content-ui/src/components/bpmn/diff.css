@@ -1,0 +1,73 @@
+.marker {
+  border-radius: 50%;
+  background-color: gray;
+  color: black;
+  font-weight: bold;
+  font-size: 150%;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.marker-changed {
+  font-size: 130%;
+  padding: 2px 5px;
+}
+
+.marker-layout-changed {
+  font-size: 120%;
+  padding: 2px 4px;
+}
+
+.diff-removed:not(.djs-connection) .djs-visual > :nth-child(1) {
+  outline: 4px solid #bb163f !important;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.diff-removed.djs-connection .djs-visual > :nth-child(1) {
+  stroke: #bb163f /* red */ !important;
+}
+
+.marker.marker-removed {
+  background: #bb163f /* red */;
+}
+
+.diff-added:not(.djs-connection) .djs-visual > :nth-child(1) {
+  outline: 4px solid #54b415 !important;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.diff-added.djs-connection .djs-visual > :nth-child(1) {
+  stroke: #54b415 /* green */ !important;
+}
+
+.marker.marker-added {
+  background: #54b415 /* green */;
+}
+
+.diff-layout-changed:not(.djs-connection) .djs-visual > :nth-child(1) {
+  outline: 4px solid #4d79a3 !important;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.diff-layout-changed.djs-connection .djs-visual > :nth-child(1) {
+  stroke: #185085 /* blue */ !important;
+}
+
+.marker.marker-layout-changed {
+  background: #185085 /* blue */;
+}
+
+.diff-changed:not(.djs-connection) .djs-visual > :nth-child(1) {
+  fill: #fbc16c /* light-yellow */ !important;
+}
+
+.diff-changed.djs-connection .djs-visual > :nth-child(1) {
+  stroke: #cd8318 /* yellow */ !important;
+}
+
+.marker.marker-changed {
+  background: #cd8318 /* yellow */;
+}
