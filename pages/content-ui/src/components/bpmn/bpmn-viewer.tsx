@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo } from 'react';
 import BpmnJS from 'bpmn-js/lib/NavigatedViewer';
 import { Box } from '@primer/react';
@@ -8,10 +7,12 @@ import EventBus from 'diagram-js/lib/core/EventBus';
 import { ConnectionLike, ShapeLike } from 'diagram-js/lib/model/Types';
 import { ModdleElement } from 'bpmn-js/lib/model/Types';
 import { ChangedDialog } from './changed-dialog';
+import { Rect } from 'diagram-js/lib/util/Types';
 
 type TypeMap = {
   canvas: Canvas;
   eventBus: EventBus;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   overlays: any;
   elementRegistry: ElementRegistry;
 };
@@ -56,12 +57,11 @@ function highlight(viewer: BpmnJS<TypeMap>, element: ShapeLike | ConnectionLike,
 function addMarker(viewer: BpmnJS<TypeMap>, element: ShapeLike | ConnectionLike, className: string, symbol: string) {
   const overlays = viewer.get('overlays');
   try {
-    overlays.add(element, {
-      position: {
-        bottom: 0,
-        right: 0,
-      },
-      html: '<span class="marker ' + className + '">' + symbol + '</span>',
+    const type = element.$type;
+    const position = type === 'bpmn:SequenceFlow' ? { top: -18, right: 18 } : { top: -24, right: 12 };
+    overlays.add(element.id, {
+      position: position,
+      html: '<div class="marker ' + className + '">' + symbol + '</div>',
     });
   } catch (e) {
     // ignore error
@@ -112,7 +112,7 @@ function syncViewers({ beforeViewer, afterViewer }: { beforeViewer: BpmnJS<TypeM
   let changing: boolean = false;
 
   function update(viewer: BpmnJS<TypeMap>) {
-    return function (e: any) {
+    return function (e: { viewbox: Rect | undefined }) {
       if (changing) {
         return;
       }
@@ -134,11 +134,11 @@ function syncViewers({ beforeViewer, afterViewer }: { beforeViewer: BpmnJS<TypeM
 export function BpmnDiffViewer({ before, after, diff }: { before: string; after: string; diff: Diff }) {
   const beforeContainerId = 'bpmn-diff-viewer-before';
   const afterContainerId = 'bpmn-diff-viewer-after';
-
   const beforeViewer = useMemo(() => {
     return new BpmnJS<TypeMap>({
       width: '100%',
       height: '100%',
+
       keyboard: {
         bindTo: document,
       },

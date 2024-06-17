@@ -1,21 +1,20 @@
 .marker {
   border-radius: 50%;
   background-color: gray;
-  color: black;
+  color: white;
   font-weight: bold;
   font-size: 150%;
-  padding-right: 6px;
-  padding-left: 6px;
+  padding: 0px 10px 3px;
 }
 
 .marker-changed {
   font-size: 130%;
-  padding: 2px 5px;
+  padding: 8px 12px;
 }
 
 .marker-layout-changed {
   font-size: 120%;
-  padding: 2px 4px;
+  padding: 6px 10px;
 }
 
 .diff-removed:not(.djs-connection) .djs-visual > :nth-child(1) {
