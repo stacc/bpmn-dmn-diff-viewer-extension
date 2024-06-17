@@ -42,7 +42,7 @@ export function BpmnViewer({ diagramXML }: { diagramXML: string }) {
     };
   }, [diagramXML, viewer]);
 
-  return <Box height="500px" id={containerId} />;
+  return <Box className="js-skip-tagsearch" height="500px" id={containerId} />;
 }
 
 function highlight(viewer: BpmnJS<TypeMap>, element: ShapeLike | ConnectionLike, marker: string) {
@@ -180,7 +180,7 @@ export function BpmnDiffViewer({ before, after, diff }: { before: string; after:
   }, [before, after, diff, beforeViewer, afterViewer]);
 
   return (
-    <div>
+    <div className="js-skip-tagsearch">
       <PanelGroup
         direction="horizontal"
         style={{
