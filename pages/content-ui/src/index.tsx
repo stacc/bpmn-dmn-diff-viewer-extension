@@ -15,6 +15,7 @@ import { Commit, DiffEntry, FilePreview, MESSAGE_ID, Pull } from '@bpmn-dmn-diff
 import { NotLoggedInPage } from './components/NotLoggedIn';
 import { BPMNFilePreviewPage } from './components/bpmn/bpmn-file-preview';
 import bpmnCSS from '@src/components/bpmn/diff.css?inline';
+import { ErrorPage } from './components/error-page';
 
 const root = createReactRoot(document);
 
@@ -56,6 +57,18 @@ async function injectNotLoggedInPage(document: Document) {
   root.render(notLoggedInPage);
 }
 
+async function injectErrorPage({ document, message, docs }: { document: Document; message: string; docs?: string }) {
+  const elements = getSupportedWebDiffElements(document);
+  const colorMode = getGithubColorMode(document);
+  const errorPage = createElement(ErrorPage, {
+    colorMode,
+    elements,
+    message,
+    docs,
+  });
+  root.render(errorPage);
+}
+
 async function injectFilePreview({ document, content }: { document: Document; content: string }) {
   const colorMode = getGithubColorMode(document);
   const filePreviewPage = createElement(BPMNFilePreviewPage, {
@@ -71,13 +84,30 @@ async function getPullDiff(owner: string, repo: string, pull: number, document: 
     id: MESSAGE_ID.GET_GITHUB_PULL_FILES,
     data: { owner, repo, pull },
   });
-  if ('error' in filesResponse) throw filesResponse.error;
+
+  if ('error' in filesResponse) {
+    console.error(filesResponse);
+    await injectErrorPage({
+      document: window.document,
+      message: filesResponse?.error?.response?.data?.message,
+      docs: filesResponse?.error?.response?.data?.documentation_url,
+    });
+    return;
+  }
   const files = filesResponse as DiffEntry[];
   const pullDataResponse = await chrome.runtime.sendMessage({
     id: MESSAGE_ID.GET_GITHUB_PULL,
     data: { owner, repo, pull },
   });
-  if ('error' in pullDataResponse) throw pullDataResponse.error;
+  if ('error' in pullDataResponse) {
+    console.error(pullDataResponse);
+    await injectErrorPage({
+      document: window.document,
+      message: pullDataResponse?.error?.response?.data?.message,
+      docs: pullDataResponse?.error?.response?.data?.documentation_url,
+    });
+    return;
+  }
   const pullData = pullDataResponse as Pull;
   const sha = pullData.head.sha;
   const parentSha = pullData.base.sha;
@@ -89,7 +119,15 @@ async function getCommitDiff(owner: string, repo: string, sha: string, document:
     id: MESSAGE_ID.GET_GITHUB_COMMIT,
     data: { owner, repo, sha },
   });
-  if ('error' in response) throw response.error;
+  if ('error' in response) {
+    console.error(response);
+    await injectErrorPage({
+      document: window.document,
+      message: response?.error?.response?.data?.message,
+      docs: response?.error?.response?.data?.documentation_url,
+    });
+    return;
+  }
   const commit = response as Commit;
   if (!commit.files) throw Error('Found no file changes in commit');
   if (!commit.parents.length) throw Error('Found no commit parent');
@@ -102,7 +140,15 @@ async function getFilePreview(owner: string, repo: string, path: string, ref: st
     id: MESSAGE_ID.GET_GITHUB_FILE_PREVIEW,
     data: { owner, repo, path, ref },
   });
-  if ('error' in response) throw response.error;
+  if ('error' in response) {
+    console.error(response);
+    await injectErrorPage({
+      document: window.document,
+      message: response?.error?.response?.data?.message,
+      docs: response?.error?.response?.data?.documentation_url,
+    });
+    return;
+  }
   const { content } = response as FilePreview;
   if (!content) throw Error('Found no file content');
   await injectFilePreview({ content, document });
@@ -149,7 +195,6 @@ async function run() {
   if (commitWithinPullParams) {
     const { owner, repo, pull, sha } = commitWithinPullParams;
     console.log('Found commit diff within pull: ', owner, repo, pull, sha);
-    // TODO: understand if more things are needed here for this special case
     await getCommitDiff(owner, repo, sha, window.document);
     return;
   }
