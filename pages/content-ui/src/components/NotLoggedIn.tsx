@@ -48,7 +48,7 @@ export function NotLoggedInPortal({ element }: NotLoggedInPortalProps) {
             <ShieldLockIcon size={48} />
           </Blankslate.Visual>
           <Blankslate.Heading>
-            You are not have not authorized the extension to access your Github account.
+            You have not authorized the extension to access your Github account.
           </Blankslate.Heading>
           <Blankslate.Description>
             To be able to see a graphical representation of you diagram, please open the settings and follow the
