@@ -181,7 +181,7 @@ importers:
         version: 22.2.0
       tsup:
         specifier: 8.0.2
-        version: 8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))(typescript@5.2.2)
+        version: 8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5))(typescript@5.4.5)
 
   packages/storage:
     devDependencies:
@@ -190,7 +190,7 @@ importers:
         version: link:../tsconfig
       tsup:
         specifier: 8.0.2
-        version: 8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))(typescript@5.2.2)
+        version: 8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5))(typescript@5.4.5)
 
   packages/tailwind-config: {}
 
@@ -217,8 +217,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       diagram-js:
-        specifier: ^14.7.1
-        version: 14.7.1
+        specifier: ^14.7.2
+        version: 14.7.2
       github-injection:
         specifier: ^1.1.0
         version: 1.1.0
@@ -2280,8 +2280,8 @@ packages:
     peerDependencies:
       diagram-js: '*'
 
-  diagram-js@14.7.1:
-    resolution: {integrity: sha512-XSWuB35iRuKPUVdYdArJb7OimI1oGj61M/7AtyfyS9uwlW//Z7edm4/yNbEUA4MEGhHJZbzg3wLexB1g2N/RmA==}
+  diagram-js@14.7.2:
+    resolution: {integrity: sha512-K0/SqaG5Uz1AZdubnPKXbwl8E9nQ4qhzUekzsEyDNwjyHzRdwabHqSZ1OeSkoSUDAURtDuebLglJSNnl2xoJAA==}
 
   didi@10.2.2:
     resolution: {integrity: sha512-l8NYkYFXV1izHI65EyT8EXOjUZtKmQkHLTT89cSP7HU5J/G7AOj0dXKtLc04EXYlga99PBY18IPjOeZ+c3DI4w==}
@@ -3892,11 +3892,6 @@ packages:
   typed-array-length@1.0.6:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
-
-  typescript@5.2.2:
-    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
@@ -5976,8 +5971,8 @@ snapshots:
   bpmn-js@17.8.1:
     dependencies:
       bpmn-moddle: 8.1.0
-      diagram-js: 14.7.1
-      diagram-js-direct-editing: 3.0.1(diagram-js@14.7.1)
+      diagram-js: 14.7.2
+      diagram-js-direct-editing: 3.0.1(diagram-js@14.7.2)
       ids: 1.0.5
       inherits-browser: 0.1.0
       min-dash: 4.2.1
@@ -6204,13 +6199,13 @@ snapshots:
 
   detect-node-es@1.1.0: {}
 
-  diagram-js-direct-editing@3.0.1(diagram-js@14.7.1):
+  diagram-js-direct-editing@3.0.1(diagram-js@14.7.2):
     dependencies:
-      diagram-js: 14.7.1
+      diagram-js: 14.7.2
       min-dash: 4.2.1
       min-dom: 4.2.1
 
-  diagram-js@14.7.1:
+  diagram-js@14.7.2:
     dependencies:
       '@bpmn-io/diagram-js-ui': 0.2.3
       clsx: 2.1.1
@@ -7454,14 +7449,6 @@ snapshots:
       camelcase-css: 2.0.1
       postcss: 8.4.38
 
-  postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2)):
-    dependencies:
-      lilconfig: 3.1.1
-      yaml: 2.4.3
-    optionalDependencies:
-      postcss: 8.4.38
-      ts-node: 10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2)
-
   postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:
       lilconfig: 3.1.1
@@ -8006,27 +7993,6 @@ snapshots:
       typescript: 5.4.5
       webpack: 5.91.0(@swc/core@1.5.24)
 
-  ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2):
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.11
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 20.14.2
-      acorn: 8.11.3
-      acorn-walk: 8.3.2
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.2.2
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-    optionalDependencies:
-      '@swc/core': 1.5.24
-    optional: true
-
   ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -8058,7 +8024,7 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  tsup@8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))(typescript@5.2.2):
+  tsup@8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.19.12)
       cac: 6.7.14
@@ -8068,7 +8034,7 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.2.2))
+      postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@swc/core@1.5.24)(@types/node@20.14.2)(typescript@5.4.5))
       resolve-from: 5.0.0
       rollup: 4.18.0
       source-map: 0.8.0-beta.0
@@ -8077,7 +8043,7 @@ snapshots:
     optionalDependencies:
       '@swc/core': 1.5.24
       postcss: 8.4.38
-      typescript: 5.2.2
+      typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -8146,9 +8112,6 @@ snapshots:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
-
-  typescript@5.2.2:
-    optional: true
 
   typescript@5.4.5: {}
 
