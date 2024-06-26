@@ -217,8 +217,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       diagram-js:
-        specifier: ^14.7.1
-        version: 14.7.1
+        specifier: ^14.7.2
+        version: 14.7.2
       github-injection:
         specifier: ^1.1.0
         version: 1.1.0
@@ -2277,8 +2277,8 @@ packages:
     peerDependencies:
       diagram-js: '*'
 
-  diagram-js@14.7.1:
-    resolution: {integrity: sha512-XSWuB35iRuKPUVdYdArJb7OimI1oGj61M/7AtyfyS9uwlW//Z7edm4/yNbEUA4MEGhHJZbzg3wLexB1g2N/RmA==}
+  diagram-js@14.7.2:
+    resolution: {integrity: sha512-K0/SqaG5Uz1AZdubnPKXbwl8E9nQ4qhzUekzsEyDNwjyHzRdwabHqSZ1OeSkoSUDAURtDuebLglJSNnl2xoJAA==}
 
   didi@10.2.2:
     resolution: {integrity: sha512-l8NYkYFXV1izHI65EyT8EXOjUZtKmQkHLTT89cSP7HU5J/G7AOj0dXKtLc04EXYlga99PBY18IPjOeZ+c3DI4w==}
@@ -5966,8 +5966,8 @@ snapshots:
   bpmn-js@17.8.1:
     dependencies:
       bpmn-moddle: 8.1.0
-      diagram-js: 14.7.1
-      diagram-js-direct-editing: 3.0.1(diagram-js@14.7.1)
+      diagram-js: 14.7.2
+      diagram-js-direct-editing: 3.0.1(diagram-js@14.7.2)
       ids: 1.0.5
       inherits-browser: 0.1.0
       min-dash: 4.2.1
@@ -6192,13 +6192,13 @@ snapshots:
 
   detect-node-es@1.1.0: {}
 
-  diagram-js-direct-editing@3.0.1(diagram-js@14.7.1):
+  diagram-js-direct-editing@3.0.1(diagram-js@14.7.2):
     dependencies:
-      diagram-js: 14.7.1
+      diagram-js: 14.7.2
       min-dash: 4.2.1
       min-dom: 4.2.1
 
-  diagram-js@14.7.1:
+  diagram-js@14.7.2:
     dependencies:
       '@bpmn-io/diagram-js-ui': 0.2.3
       clsx: 2.1.1
