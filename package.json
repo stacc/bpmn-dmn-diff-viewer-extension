@@ -1,6 +1,6 @@
 {
   "name": "bpmn-dmn-diff-viewer-extension",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A chrome extension for Github to see diff of BPMN and DMN files",
   "license": "MIT",
   "repository": {

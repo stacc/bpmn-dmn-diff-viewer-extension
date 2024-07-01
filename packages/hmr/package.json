@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-dmn-diff-viewer-extension/hmr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "chrome extension hot module reload or refresh",
   "private": true,
   "sideEffects": true,
