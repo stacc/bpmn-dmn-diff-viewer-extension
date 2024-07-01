@@ -60,7 +60,9 @@
 }
 
 .diff-changed:not(.djs-connection) .djs-visual > :nth-child(1) {
-  fill: #fbc16c /* light-yellow */ !important;
+  outline: 4px solid #cd8318 !important;
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 .diff-changed.djs-connection .djs-visual > :nth-child(1) {

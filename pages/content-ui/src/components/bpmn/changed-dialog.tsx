@@ -63,14 +63,7 @@ export function ChangedDialog({ diff, hightlight }: { diff: Diff; hightlight: (i
   const rows = data.slice(start, end).filter((row, index, self) => index === self.findIndex(t => t.id === row.id));
   return (
     <div>
-      <Button
-        sx={{
-          marginX: 2,
-          marginBottom: 2,
-        }}
-        ref={returnFocusRef}
-        variant="default"
-        onClick={() => setIsOpen(true)}>
+      <Button ref={returnFocusRef} variant="default" onClick={() => setIsOpen(true)}>
         All changes
       </Button>
       <Dialog
