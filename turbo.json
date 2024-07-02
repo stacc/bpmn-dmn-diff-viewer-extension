@@ -2,11 +2,13 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "dev": {
+      "passThroughEnv": ["__FIREFOX__", "__DEV__"],
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "build/**"],
       "persistent": true
     },
     "build": {
+      "passThroughEnv": ["__FIREFOX__"],
       "dependsOn": ["^build"],
       "outputs": ["../../dist/**", "dist/**", "build/**"],
       "cache": false

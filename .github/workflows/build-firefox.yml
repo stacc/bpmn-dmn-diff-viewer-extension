@@ -1,4 +1,4 @@
-name: Build And Upload Extension Zip Via Artifact
+name: Build Firefox Extension and Upload Zip Via Artifact
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm build
+      - run: pnpm build:firefox
 
       - uses: actions/upload-artifact@v4
         with:
