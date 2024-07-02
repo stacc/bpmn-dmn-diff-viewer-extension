@@ -1,6 +1,6 @@
 import { ManifestParserInterface, Manifest } from './type';
 
-const ADDON_ID = 'eedf018b-4d9b-4e51-872d-b98e00a07047';
+const ADDON_ID = '{eedf018b-4d9b-4e51-872d-b98e00a07047}';
 
 export const ManifestParserImpl: ManifestParserInterface = {
   convertManifestToString: (manifest, env) => {
