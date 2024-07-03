@@ -4,21 +4,11 @@ import { createPortal } from 'react-dom';
 import { Loading } from '../Loading';
 import { SourceRichToggle } from '../SourceRichToggle';
 import { ErrorMessage } from '../ErrorMessage';
-import { diff } from 'bpmn-js-differ';
-import BpmnModdle from 'bpmn-moddle';
-import { BpmnDiffViewer, BpmnViewer } from './bpmn-viewer';
-import { DiffEntry, FileDiff, MESSAGE_ID } from '@bpmn-dmn-diff-viewer-extension/shared/lib/types';
+import { DMNDiffViewer, DMNViewer } from './dmn-viewer';
+import { DiffEntry, FileDiff } from '@bpmn-dmn-diff-viewer-extension/shared/lib/types';
+import { MESSAGE_ID } from '@bpmn-dmn-diff-viewer-extension/shared';
 
-async function loadModel(diagramXML: string) {
-  try {
-    const loadedResult = await new BpmnModdle().fromXML(diagramXML);
-    return loadedResult.rootElement;
-  } catch (err) {
-    console.log('something went wrong!');
-  }
-}
-
-export function BpmnDiffPortal({
+export function DMNDiffPortal({
   element,
   file,
   owner,
@@ -33,7 +23,7 @@ export function BpmnDiffPortal({
   sha: string;
   parentSha: string;
 }): React.ReactElement {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [richDiff, setRichDiff] = useState<FileDiff>();
   const [richSelected, setRichSelected] = useState(true);
   const [toolbarContainer, setToolbarContainer] = useState<HTMLElement>();
@@ -63,20 +53,17 @@ export function BpmnDiffPortal({
         id: MESSAGE_ID.GET_FILE_DIFF,
         data: { owner, repo, sha, parentSha, file },
       });
+      console.log('response', response, file.filename);
       if ('error' in response) {
         setLoading(false);
       } else {
         const before = response.before;
         const after = response.after;
         if (before && after) {
-          const asyncBefore = loadModel(before);
-          const asyncAfter = loadModel(after);
-          const [beforeModel, afterModel] = await Promise.all([asyncBefore, asyncAfter]);
-          const diffResult = diff(beforeModel, afterModel);
           setRichDiff({
             before,
             after,
-            diff: diffResult,
+            diff: 'diff',
           });
         }
         if (before && !after) {
@@ -97,6 +84,7 @@ export function BpmnDiffPortal({
       }
     })();
   }, [file, owner, repo, sha, parentSha]);
+
   return (
     <>
       {toolbarContainer &&
@@ -124,11 +112,11 @@ export function BpmnDiffPortal({
                 {richDiff ? (
                   <div>
                     {richDiff.diff ? (
-                      <BpmnDiffViewer before={richDiff.before!} after={richDiff.after!} diff={richDiff.diff} />
+                      <DMNDiffViewer before={richDiff.before!} after={richDiff.after!} />
                     ) : richDiff.before ? (
-                      <BpmnViewer diagramXML={richDiff.before!} />
+                      <DMNViewer diagramXML={richDiff.before!} />
                     ) : richDiff.after ? (
-                      <BpmnViewer diagramXML={richDiff.after!} />
+                      <DMNViewer diagramXML={richDiff.after!} />
                     ) : (
                       <ErrorMessage />
                     )}

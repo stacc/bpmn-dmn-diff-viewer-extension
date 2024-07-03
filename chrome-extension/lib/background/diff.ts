@@ -5,12 +5,8 @@ export const extensionToSrcFormat: {
   [extension: string]: string;
 } = {
   bpmn: 'bpmn',
+  dmn: 'dmn',
 };
-
-export function isFilenameSupported(filename: string): boolean {
-  const extension = filename.split('.').pop();
-  return !!(extension && extensionToSrcFormat[extension]);
-}
 
 export async function getContentString({
   github,
@@ -54,7 +50,7 @@ export async function getFileDiff(
   if (!extension || !extensionToSrcFormat[extension]) {
     throw Error(`Unsupported extension. Given ${extension}, was expecting ${Object.keys(extensionToSrcFormat)}`);
   }
-
+  console.log('filename', filename);
   if (status === 'modified') {
     const before = await getContentString({ github, owner, repo, ref: parentSha, path: filename });
     const after = await getContentString({ github, owner, repo, ref: sha, path: filename });
