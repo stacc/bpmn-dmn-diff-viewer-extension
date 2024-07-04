@@ -38,10 +38,15 @@ export default defineConfig({
 		},
 		outDir: resolve(rootDir, "..", "..", "dist", "content-ui"),
 		sourcemap: isDev,
-		minify: isProduction,
+		minify: isProduction ? "terser" : false,
 		reportCompressedSize: isProduction,
 		rollupOptions: {
 			external: ["chrome"],
+		},
+		terserOptions: {
+			format: {
+				ascii_only: true,
+			},
 		},
 	},
 	define: {
