@@ -18,7 +18,6 @@
     "prettier": "prettier . --write",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {},
   "devDependencies": {
     "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*"
   }
