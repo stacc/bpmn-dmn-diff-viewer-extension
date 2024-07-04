@@ -22,7 +22,7 @@
     "@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
     "@primer/octicons-react": "^19.9.0",
     "@primer/react": "^36.22.0",
-    "bpmn-js": "^17.8.1",
+    "bpmn-js": "^17.9.0",
     "bpmn-js-differ": "^2.0.2",
     "bpmn-moddle": "^9.0.1",
     "diagram-js": "^14.7.2",
