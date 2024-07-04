@@ -1,89 +1,89 @@
-import { components } from '@octokit/openapi-types';
+import type { components } from "@octokit/openapi-types";
 
 // octokit
 
-export type DiffEntry = components['schemas']['diff-entry'];
-export type ContentFile = components['schemas']['content-file'];
-export type User = components['schemas']['simple-user'];
-export type Pull = components['schemas']['pull-request'];
-export type Commit = components['schemas']['commit'];
+export type DiffEntry = components["schemas"]["diff-entry"];
+export type ContentFile = components["schemas"]["content-file"];
+export type User = components["schemas"]["simple-user"];
+export type Pull = components["schemas"]["pull-request"];
+export type Commit = components["schemas"]["commit"];
 
 export type FileDiff = {
-  before?: string | null;
-  after?: string | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  diff?: any;
+	before?: string | null;
+	after?: string | null;
+	// biome-ignore lint/suspicious/noExplicitAny: We do not have this type
+	diff?: any;
 };
 
 export type FilePreview = {
-  content: string;
+	content: string;
 };
 
 export const MESSAGE_ID = {
-  GET_GITHUB_PULL_FILES: 'GetPullFiles',
-  GET_GITHUB_COMMIT: 'GetGithubCommit',
-  GET_GITHUB_USER: 'GetGithubUser',
-  SAVE_GITHUB_TOKEN: 'SaveGithubToken',
-  GET_FILE_DIFF: 'GetFileDiff',
-  GET_GITHUB_PULL: 'GetGithubPull',
-  OPEN_OPTIONS_PAGE: 'OpenOptionsPage',
-  GET_GITHUB_FILE_PREVIEW: 'GetGithubFilePreview',
+	GET_GITHUB_PULL_FILES: "GetPullFiles",
+	GET_GITHUB_COMMIT: "GetGithubCommit",
+	GET_GITHUB_USER: "GetGithubUser",
+	SAVE_GITHUB_TOKEN: "SaveGithubToken",
+	GET_FILE_DIFF: "GetFileDiff",
+	GET_GITHUB_PULL: "GetGithubPull",
+	OPEN_OPTIONS_PAGE: "OpenOptionsPage",
+	GET_GITHUB_FILE_PREVIEW: "GetGithubFilePreview",
 } as const;
 
 export type MessageIds = (typeof MESSAGE_ID)[keyof typeof MESSAGE_ID];
 
 export type MessageGetGithubPullFilesData = {
-  owner: string;
-  repo: string;
-  pull: number;
+	owner: string;
+	repo: string;
+	pull: number;
 };
 
 export type MessageGetGithubFilePreviewData = {
-  owner: string;
-  repo: string;
-  path: string;
-  ref: string;
+	owner: string;
+	repo: string;
+	path: string;
+	ref: string;
 };
 
 export type MessageGetGithubCommitData = {
-  owner: string;
-  repo: string;
-  sha: string;
+	owner: string;
+	repo: string;
+	sha: string;
 };
 
 export type MessageGetFileDiff = {
-  owner: string;
-  repo: string;
-  sha: string;
-  parentSha: string;
-  file: DiffEntry;
+	owner: string;
+	repo: string;
+	sha: string;
+	parentSha: string;
+	file: DiffEntry;
 };
 
 export type MessageSaveToken = {
-  token: string;
+	token: string;
 };
 
 export type MessageError = {
-  error: Error;
+	error: Error;
 };
 
 export type Message = {
-  id: MessageIds;
-  data?:
-    | MessageGetGithubPullFilesData
-    | MessageGetGithubCommitData
-    | MessageSaveToken
-    | MessageGetFileDiff
-    | MessageGetGithubFilePreviewData;
+	id: MessageIds;
+	data?:
+		| MessageGetGithubPullFilesData
+		| MessageGetGithubCommitData
+		| MessageSaveToken
+		| MessageGetFileDiff
+		| MessageGetGithubFilePreviewData;
 };
 
 export type MessageResponse =
-  | DiffEntry[]
-  | Pull
-  | Commit
-  | User
-  | MessageSaveToken
-  | FileDiff
-  | FilePreview
-  | MessageError
-  | void;
+	| DiffEntry[]
+	| Pull
+	| Commit
+	| User
+	| MessageSaveToken
+	| FileDiff
+	| FilePreview
+	| MessageError
+	| undefined;

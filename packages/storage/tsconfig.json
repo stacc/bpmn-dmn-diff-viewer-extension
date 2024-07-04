@@ -1,13 +1,13 @@
 {
-  "extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/utils",
-  "compilerOptions": {
-    "outDir": "dist",
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@lib/*": ["lib/*"]
-    },
-    "types": ["chrome"]
-  },
-  "include": ["index.ts", "lib"]
+	"extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/utils",
+	"compilerOptions": {
+		"outDir": "dist",
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"paths": {
+			"@lib/*": ["lib/*"]
+		},
+		"types": ["chrome"]
+	},
+	"include": ["index.ts", "lib"]
 }

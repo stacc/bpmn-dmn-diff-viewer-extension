@@ -1,36 +1,31 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "tasks": {
-    "dev": {
-      "passThroughEnv": ["__FIREFOX__", "__DEV__"],
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", "build/**"],
-      "persistent": true
-    },
-    "build": {
-      "passThroughEnv": ["__FIREFOX__"],
-      "dependsOn": ["^build"],
-      "outputs": ["../../dist/**", "dist/**", "build/**"],
-      "cache": false
-    },
-    "type-check": {
-      "cache": false
-    },
-    "lint": {
-      "cache": false
-    },
-    "lint:fix": {
-      "cache": false
-    },
-    "prettier": {
-      "cache": false
-    },
-    "test": {
-      "dependsOn": ["^test", "^build"],
-      "cache": false
-    },
-    "clean": {
-      "cache": false
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"dev": {
+			"passThroughEnv": ["__FIREFOX__", "__DEV__"],
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", "build/**"],
+			"persistent": true
+		},
+		"build": {
+			"passThroughEnv": ["__FIREFOX__"],
+			"dependsOn": ["^build"],
+			"outputs": ["../../dist/**", "dist/**", "build/**"],
+			"cache": false
+		},
+		"type-check": {
+			"cache": false
+		},
+		"//#format-and-lint": {},
+		"//#format-and-lint:fix": {
+			"cache": false
+		},
+		"test": {
+			"dependsOn": ["^test", "^build"],
+			"cache": false
+		},
+		"clean": {
+			"cache": false
+		}
+	}
 }

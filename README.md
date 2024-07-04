@@ -26,13 +26,13 @@
 - [Intro](#intro)
 - [Features](#features)
 - [Structure](#structure)
-    - [ChromeExtension](#chrome-extension)
-    - [Packages](#packages)
-    - [Pages](#pages)
+  - [ChromeExtension](#chrome-extension)
+  - [Packages](#packages)
+  - [Pages](#pages)
 - [Install](#install)
-    - [Procedures](#procedures)
-        - [Chrome](#chrome)
-        - [Firefox](#firefox)
+  - [Procedures](#procedures)
+    - [Chrome](#chrome)
+    - [Firefox](#firefox)
 - [Reference](#reference)
 - [Star History](#starhistory)
 - [Contributors](#contributors)
@@ -40,6 +40,7 @@
 ## Intro <a name="intro"></a>
 
 This boilerplate is made for creating chrome extensions using React and Typescript.
+
 > The focus was on improving the build speed and development experience with Vite(Rollup) & Turborepo.
 
 ## Features <a name="features"></a>
@@ -49,8 +50,6 @@ This boilerplate is made for creating chrome extensions using React and Typescri
 - [Tailwindcss](https://tailwindcss.com/)
 - [Vite](https://vitejs.dev/)
 - [Turborepo](https://turbo.build/repo)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/)
 - [Chrome Extension Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
 - Custom HMR(Hot Module Rebuild) Plugin
 
@@ -68,10 +67,10 @@ This boilerplate is made for creating chrome extensions using React and Typescri
 ### For Chrome: <a name="chrome"></a>
 
 1. Run:
-    - Dev: `pnpm dev` (it's run parallel with `pnpm dev-server` automatically)
-        - When you run with Windows, you should run as
-          administrator. [(Issue#456)](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/456)
-    - Prod: `pnpm build`
+   - Dev: `pnpm dev` (it's run parallel with `pnpm dev-server` automatically)
+     - When you run with Windows, you should run as
+       administrator. [(Issue#456)](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/456)
+   - Prod: `pnpm build`
 2. Open in browser - `chrome://extensions`
 3. Check - `Developer mode`
 4. Find and Click - `Load unpacked extension`
@@ -80,8 +79,8 @@ This boilerplate is made for creating chrome extensions using React and Typescri
 ### For Firefox: <a name="firefox"></a>
 
 1. Run:
-    - Dev: `pnpm dev:firefox` (it's run parallel with `pnpm dev-server` automatically)
-    - Prod: `pnpm build:firefox`
+   - Dev: `pnpm dev:firefox` (it's run parallel with `pnpm dev-server` automatically)
+   - Prod: `pnpm build:firefox`
 2. Open in browser - `about:debugging#/runtime/this-firefox`
 3. Find and Click - `Load Temporary Add-on...`
 4. Select - `manifest.json` from `dist` folder at root

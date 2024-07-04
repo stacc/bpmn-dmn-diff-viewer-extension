@@ -1,26 +1,21 @@
 {
-  "name": "@bpmn-dmn-diff-viewer-extension/storage",
-  "version": "0.0.5",
-  "description": "chrome extension storage",
-  "private": true,
-  "sideEffects": false,
-  "files": [
-    "dist/**"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "clean": "rimraf ./dist && rimraf .turbo",
-    "build": "tsup index.ts --format esm,cjs --dts",
-    "dev": "tsc -w",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
-    "type-check": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
-    "tsup": "8.1.0"
-  }
+	"name": "@bpmn-dmn-diff-viewer-extension/storage",
+	"version": "0.0.5",
+	"description": "chrome extension storage",
+	"private": true,
+	"sideEffects": false,
+	"files": ["dist/**"],
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"clean": "rimraf ./dist && rimraf .turbo",
+		"build": "tsup index.ts --format esm,cjs --dts",
+		"dev": "tsc -w",
+		"type-check": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
+		"tsup": "8.1.0"
+	}
 }

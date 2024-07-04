@@ -1,13 +1,18 @@
-import { createStorage, StorageType, type BaseStorage, SessionAccessLevel } from './base';
-import { getStorageGithubToken, setStorageGithubToken } from './github';
-type TokenKey = 'gtk';
+import {
+	type BaseStorage,
+	SessionAccessLevel,
+	StorageType,
+	createStorage,
+} from "./base";
+import { getStorageGithubToken, setStorageGithubToken } from "./github";
+type TokenKey = "gtk";
 
 export {
-  createStorage,
-  getStorageGithubToken,
-  setStorageGithubToken,
-  StorageType,
-  SessionAccessLevel,
-  BaseStorage,
-  type TokenKey,
+	createStorage,
+	getStorageGithubToken,
+	setStorageGithubToken,
+	StorageType,
+	SessionAccessLevel,
+	type BaseStorage,
+	type TokenKey,
 };

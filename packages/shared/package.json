@@ -1,28 +1,23 @@
 {
-  "name": "@bpmn-dmn-diff-viewer-extension/shared",
-  "version": "0.0.5",
-  "description": "chrome extension shared code",
-  "private": true,
-  "sideEffects": false,
-  "files": [
-    "dist/**"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "clean": "rimraf ./dist && rimraf .turbo",
-    "build": "tsup index.ts --format esm,cjs --dts --external react,chrome",
-    "dev": "tsc -w",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
-    "type-check": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
-    "@octokit/openapi-types": "^22.2.0",
-    "tsup": "8.1.0"
-  }
+	"name": "@bpmn-dmn-diff-viewer-extension/shared",
+	"version": "0.0.5",
+	"description": "chrome extension shared code",
+	"private": true,
+	"sideEffects": false,
+	"files": ["dist/**"],
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"clean": "rimraf ./dist && rimraf .turbo",
+		"build": "tsup index.ts --format esm,cjs --dts --external react,chrome",
+		"dev": "tsc -w",
+		"type-check": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
+		"@octokit/openapi-types": "^22.2.0",
+		"tsup": "8.1.0"
+	}
 }

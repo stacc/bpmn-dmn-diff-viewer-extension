@@ -1,12 +1,12 @@
 {
-  "extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/base",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
-    },
-    "jsx": "react-jsx",
-    "types": ["chrome"]
-  },
-  "include": ["src"]
+	"extends": "@bpmn-dmn-diff-viewer-extension/tsconfig/base",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": ["src/*"]
+		},
+		"jsx": "react-jsx",
+		"types": ["chrome"]
+	},
+	"include": ["src"]
 }

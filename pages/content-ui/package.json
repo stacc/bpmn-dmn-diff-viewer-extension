@@ -1,44 +1,39 @@
 {
-  "name": "@bpmn-dmn-diff-viewer-extension/content-ui",
-  "version": "0.0.5",
-  "description": "chrome extension content ui",
-  "type": "module",
-  "private": true,
-  "sideEffects": true,
-  "files": [
-    "dist/**"
-  ],
-  "scripts": {
-    "clean": "rimraf ./dist && rimraf .turbo",
-    "build": "pnpm run clean && tsc --noEmit && vite build",
-    "build:watch": "cross-env __DEV__=true vite build -w --mode development",
-    "dev": "pnpm build:watch",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
-    "type-check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
-    "@primer/octicons-react": "^19.9.0",
-    "@primer/react": "^36.22.0",
-    "bpmn-js": "^17.9.0",
-    "bpmn-js-differ": "^2.0.2",
-    "bpmn-moddle": "^9.0.1",
-    "diagram-js": "^14.7.2",
-    "dmn-js": "^16.5.0",
-    "github-injection": "^1.1.0",
-    "react": "18.3.1",
-    "react-dom": "18.2.0",
-    "react-resizable-panels": "^2.0.19"
-  },
-  "devDependencies": {
-    "@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
-    "@octokit/openapi-types": "^22.2.0",
-    "@types/chrome": "^0.0.268",
-    "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.3.0"
-  }
+	"name": "@bpmn-dmn-diff-viewer-extension/content-ui",
+	"version": "0.0.5",
+	"description": "chrome extension content ui",
+	"type": "module",
+	"private": true,
+	"sideEffects": true,
+	"files": ["dist/**"],
+	"scripts": {
+		"clean": "rimraf ./dist && rimraf .turbo",
+		"build": "pnpm run clean && tsc --noEmit && vite build",
+		"build:watch": "cross-env __DEV__=true vite build -w --mode development",
+		"dev": "pnpm build:watch",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
+		"@primer/octicons-react": "^19.9.0",
+		"@primer/react": "^36.22.0",
+		"bpmn-js": "^17.9.0",
+		"bpmn-js-differ": "^2.0.2",
+		"bpmn-moddle": "^9.0.1",
+		"diagram-js": "^14.7.2",
+		"dmn-js": "^16.5.0",
+		"github-injection": "^1.1.0",
+		"react": "18.3.1",
+		"react-dom": "18.2.0",
+		"react-resizable-panels": "^2.0.19"
+	},
+	"devDependencies": {
+		"@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
+		"@octokit/openapi-types": "^22.2.0",
+		"@types/chrome": "^0.0.268",
+		"@types/react": "^18.3.2",
+		"@types/react-dom": "^18.3.0"
+	}
 }

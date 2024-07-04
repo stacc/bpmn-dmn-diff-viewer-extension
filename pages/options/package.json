@@ -1,31 +1,26 @@
 {
-  "name": "@bpmn-dmn-diff-viewer-extension/options",
-  "version": "0.0.5",
-  "description": "bpmn diff viewer extension options",
-  "private": true,
-  "sideEffects": true,
-  "files": [
-    "dist/**"
-  ],
-  "scripts": {
-    "clean": "rimraf ./dist && rimraf .turbo",
-    "build": "pnpm run clean && tsc --noEmit && vite build",
-    "build:watch": "cross-env __DEV__=true vite build -w --mode development",
-    "dev": "pnpm build:watch",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
-    "type-check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
-    "@primer/react": "^36.22.0",
-    "@radix-ui/themes": "^3.0.5"
-  },
-  "devDependencies": {
-    "@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
-    "@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*"
-  }
+	"name": "@bpmn-dmn-diff-viewer-extension/options",
+	"version": "0.0.5",
+	"description": "bpmn diff viewer extension options",
+	"private": true,
+	"sideEffects": true,
+	"files": ["dist/**"],
+	"scripts": {
+		"clean": "rimraf ./dist && rimraf .turbo",
+		"build": "pnpm run clean && tsc --noEmit && vite build",
+		"build:watch": "cross-env __DEV__=true vite build -w --mode development",
+		"dev": "pnpm build:watch",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
+		"@primer/react": "^36.22.0",
+		"@radix-ui/themes": "^3.0.5"
+	},
+	"devDependencies": {
+		"@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/tailwindcss-config": "workspace:*",
+		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*"
+	}
 }
