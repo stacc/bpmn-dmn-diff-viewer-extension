@@ -32,10 +32,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: pnpm build:firefox
-      - name: Move Firefox build to a subdirectory
-        run: |
-          mkdir -p dist/firefox
-          mv dist/* dist/firefox/
       - uses: actions/upload-artifact@v4
         if: steps.changesets.outputs.hasChangesets == 'false'
         with:
@@ -43,10 +39,6 @@ jobs:
           path: dist/firefox/*
 
       - run: pnpm build
-      - name: Move Chrome build to a subdirectory
-        run: |
-          mkdir -p dist/chrome
-          mv dist/* dist/chrome/
       - uses: actions/upload-artifact@v4
         if: steps.changesets.outputs.hasChangesets == 'false'
         with:
