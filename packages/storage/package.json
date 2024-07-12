@@ -4,7 +4,9 @@
 	"description": "chrome extension storage",
 	"private": true,
 	"sideEffects": false,
-	"files": ["dist/**"],
+	"files": [
+		"dist/**"
+	],
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",

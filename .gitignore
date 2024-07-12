@@ -19,3 +19,6 @@
 
 # compiled
 apps/chrome-extension/public/manifest.json
+
+# nx
+.nx

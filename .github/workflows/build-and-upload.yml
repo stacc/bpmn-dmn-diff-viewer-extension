@@ -1,0 +1,54 @@
+name: Build and Upload
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - uses: pnpm/action-setup@v4
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: pnpm build:firefox
+      - name: Move Firefox build to a subdirectory
+        run: |
+          mkdir -p dist/firefox
+          mv dist/* dist/firefox/
+      - uses: actions/upload-artifact@v4
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        with:
+          name: firefox
+          path: dist/firefox/*
+
+      - run: pnpm build
+      - name: Move Chrome build to a subdirectory
+        run: |
+          mkdir -p dist/chrome
+          mv dist/* dist/chrome/
+      - uses: actions/upload-artifact@v4
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        with:
+          name: chrome
+          path: dist/chrome/*
