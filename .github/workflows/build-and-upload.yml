@@ -36,11 +36,11 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         with:
           name: firefox
-          path: dist/firefox/*
+          path: dist/*
 
       - run: pnpm build
       - uses: actions/upload-artifact@v4
         if: steps.changesets.outputs.hasChangesets == 'false'
         with:
           name: chrome
-          path: dist/chrome/*
+          path: dist/*
