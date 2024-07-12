@@ -15,7 +15,7 @@
 	},
 	"dependencies": {
 		"@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
-		"@primer/octicons-react": "^19.9.0",
+		"@primer/octicons-react": "^19.11.0",
 		"@primer/react": "^36.22.0",
 		"bpmn-js": "^17.9.0",
 		"bpmn-js-differ": "^2.0.2",
