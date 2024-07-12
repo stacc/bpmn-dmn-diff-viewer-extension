@@ -24,7 +24,7 @@
 		"@bpmn-dmn-diff-viewer-extension/hmr": "workspace:*",
 		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
 		"@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
-		"@laynezh/vite-plugin-lib-assets": "^0.5.21",
+		"@laynezh/vite-plugin-lib-assets": "^0.5.23",
 		"@octokit/openapi-types": "^22.2.0",
 		"@octokit/types": "^13.5.0",
 		"@types/ws": "^8.5.10",
