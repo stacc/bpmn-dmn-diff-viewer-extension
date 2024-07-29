@@ -21,7 +21,7 @@
 		"bpmn-js-differ": "^2.0.2",
 		"bpmn-moddle": "^9.0.1",
 		"diagram-js": "^14.8.0",
-		"dmn-js": "^16.6.0",
+		"dmn-js": "^16.6.1",
 		"github-injection": "^1.1.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
