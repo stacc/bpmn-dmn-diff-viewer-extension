@@ -18,6 +18,6 @@
 	},
 	"devDependencies": {
 		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
-		"tsup": "8.2.3"
+		"tsup": "8.2.4"
 	}
 }
