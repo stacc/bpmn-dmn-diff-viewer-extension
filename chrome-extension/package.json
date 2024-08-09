@@ -28,7 +28,7 @@
 		"@octokit/openapi-types": "^22.2.0",
 		"@octokit/types": "^13.5.0",
 		"@types/ws": "^8.5.11",
-		"magic-string": "^0.30.10",
+		"magic-string": "^0.30.11",
 		"ts-loader": "^9.5.1"
 	}
 }

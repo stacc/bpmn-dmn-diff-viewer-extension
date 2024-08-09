@@ -4,9 +4,7 @@
 	"description": "chrome extension shared code",
 	"private": true,
 	"sideEffects": false,
-	"files": [
-		"dist/**"
-	],
+	"files": ["dist/**"],
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
@@ -20,7 +18,7 @@
 		"@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
 		"@bpmn-dmn-diff-viewer-extension/tsconfig": "workspace:*",
 		"@octokit/openapi-types": "^22.2.0",
-		"tsup": "8.2.3",
-		"typescript": "^5.5.4"
+		"typescript": "^5.5.4",
+		"tsup": "8.2.4"
 	}
 }
