@@ -133,6 +133,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.6.7)(@types/node@20.14.10)(typescript@5.5.4)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/shared:
     devDependencies:
@@ -148,6 +151,9 @@ importers:
       tsup:
         specifier: 8.2.3
         version: 8.2.3(@swc/core@1.6.7)(jiti@1.21.6)(postcss@8.4.40)(typescript@5.5.4)(yaml@2.4.5)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/storage:
     devDependencies:
@@ -157,6 +163,9 @@ importers:
       tsup:
         specifier: 8.2.3
         version: 8.2.3(@swc/core@1.6.7)(jiti@1.21.6)(postcss@8.4.40)(typescript@5.5.4)(yaml@2.4.5)
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/tailwind-config: {}
 
