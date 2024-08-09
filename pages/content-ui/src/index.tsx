@@ -19,11 +19,13 @@ import {
 	getGithubColorMode,
 	getGithubCommitUrlParams,
 	getGithubCommitWithinPullUrlParams,
+	getGithubEditPreviewUrlParams,
 	getGithubFilePreviewUrlParams,
 	getGithubPullUrlParams,
 	getSupportedWebDiffElements,
 	mapInjectableDiffElements,
 } from "./web";
+import { BPMNEditFilePage } from "./components/bpmn/bpmn-edit-file";
 
 const root = createReactRoot(document);
 
@@ -76,7 +78,11 @@ async function injectErrorPage({
 	document,
 	message,
 	docs,
-}: { document: Document; message: string; docs?: string }) {
+}: {
+	document: Document;
+	message: string;
+	docs?: string;
+}) {
 	const elements = getSupportedWebDiffElements(document);
 	const colorMode = getGithubColorMode(document);
 	const errorPage = createElement(ErrorPage, {
@@ -92,7 +98,11 @@ async function injectFilePreview({
 	document,
 	content,
 	path,
-}: { document: Document; content: string; path: string }) {
+}: {
+	document: Document;
+	content: string;
+	path: string;
+}) {
 	const colorMode = getGithubColorMode(document);
 	const isBpmn = path.endsWith(".bpmn");
 	const component = isBpmn ? BPMNFilePreviewPage : DMNFilePreviewPage;
@@ -112,6 +122,35 @@ async function injectFilePreview({
 	}
 
 	root.render(filePreviewPage);
+}
+
+async function injectEditFilePreview({
+	document,
+	content,
+	path,
+}: {
+	document: Document;
+	content: string;
+	path: string;
+}) {
+	const colorMode = getGithubColorMode(document);
+	const isBpmn = path.endsWith(".bpmn");
+	const fileEditPage = createElement(BPMNEditFilePage, {
+		colorMode,
+		content,
+		document,
+	});
+
+	// We only want to load the DMN CSS if it's a DMN file
+	if (!isBpmn) {
+		const body = document.body;
+		const style = document.createElement("style");
+		style.type = "text/css";
+		style.innerHTML = dmnCSS;
+		body.insertBefore(style, body.firstChild);
+	}
+
+	root.render(fileEditPage);
 }
 
 async function getPullDiff(
@@ -185,13 +224,21 @@ async function getCommitDiff(
 	});
 }
 
-async function getFilePreview(
-	owner: string,
-	repo: string,
-	path: string,
-	ref: string,
-	document: Document,
-) {
+async function getFilePreview({
+	owner,
+	repo,
+	path,
+	ref,
+	document,
+	isEdit = false,
+}: {
+	owner: string;
+	repo: string;
+	path: string;
+	ref: string;
+	document: Document;
+	isEdit?: boolean;
+}) {
 	const response = await chrome.runtime.sendMessage({
 		id: MESSAGE_ID.GET_GITHUB_FILE_PREVIEW,
 		data: { owner, repo, path, ref },
@@ -206,6 +253,7 @@ async function getFilePreview(
 	}
 	const { content } = response as FilePreview;
 	if (!content) throw Error("Found no file content");
+	if (isEdit) await injectEditFilePreview({ content, document, path });
 	await injectFilePreview({ content, document, path });
 }
 
@@ -233,8 +281,24 @@ async function run() {
 	if (previewParams) {
 		const { owner, repo, path, ref } = previewParams;
 		if (!path.endsWith(".bpmn") && !path.endsWith(".dmn")) return;
-		console.log("Found file preview diff: ", owner, repo, path);
-		await getFilePreview(owner, repo, path, ref, window.document);
+		console.log("Found edit file: ", owner, repo, path);
+		await getFilePreview({ owner, repo, path, ref, document: window.document });
+		return;
+	}
+
+	const editPreviewParams = getGithubEditPreviewUrlParams(url);
+	if (editPreviewParams) {
+		const { owner, repo, path, ref } = editPreviewParams;
+		if (!path.endsWith(".bpmn") && !path.endsWith(".dmn")) return;
+		console.log("Found file edit preview diff: ", owner, repo, path);
+		await getFilePreview({
+			owner,
+			repo,
+			path,
+			ref,
+			document: window.document,
+			isEdit: true,
+		});
 		return;
 	}
 
