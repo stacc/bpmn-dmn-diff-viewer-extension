@@ -89,6 +89,26 @@ chrome.runtime.onMessage.addListener(
 			return true;
 		}
 
+		if (message.id === MESSAGE_ID.GET_GITHUB_PULL_COMMENTS) {
+			console.info("get pull comments");
+			if (!github) {
+				sendResponse({ error: noClientError });
+				return false;
+			}
+			const { owner, repo, pull } =
+				message.data as MessageGetGithubPullFilesData;
+			github.rest.pulls
+				.listReviewComments({
+					owner,
+					repo,
+					pull_number: pull,
+					per_page: 300,
+				})
+				.then((r) => sendResponse(r.data))
+				.catch((error) => sendResponse({ error }));
+			return true;
+		}
+
 		if (message.id === MESSAGE_ID.GET_GITHUB_COMMIT) {
 			if (!github) {
 				sendResponse({ error: noClientError });

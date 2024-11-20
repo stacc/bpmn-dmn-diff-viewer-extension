@@ -7,6 +7,7 @@ export type ContentFile = components["schemas"]["content-file"];
 export type User = components["schemas"]["simple-user"];
 export type Pull = components["schemas"]["pull-request"];
 export type Commit = components["schemas"]["commit"];
+export type ReviewComment = components["schemas"]["review-comment"];
 
 export type FileDiff = {
 	before?: string | null;
@@ -28,6 +29,7 @@ export const MESSAGE_ID = {
 	GET_GITHUB_PULL: "GetGithubPull",
 	OPEN_OPTIONS_PAGE: "OpenOptionsPage",
 	GET_GITHUB_FILE_PREVIEW: "GetGithubFilePreview",
+	GET_GITHUB_PULL_COMMENTS: "GetGithubPullComments",
 } as const;
 
 export type MessageIds = (typeof MESSAGE_ID)[keyof typeof MESSAGE_ID];
@@ -84,6 +86,7 @@ export type MessageResponse =
 	| User
 	| MessageSaveToken
 	| FileDiff
+	| ReviewComment[]
 	| FilePreview
 	| MessageError
 	| undefined;

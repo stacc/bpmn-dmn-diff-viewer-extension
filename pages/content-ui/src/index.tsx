@@ -4,6 +4,7 @@ import {
 	type FilePreview,
 	MESSAGE_ID,
 	type Pull,
+	type ReviewComment,
 } from "@bpmn-dmn-diff-viewer-extension/shared";
 import bpmnCSS from "@src/components/bpmn/diff.css?inline";
 import dmnCSS from "@src/components/dmn/dmn.css?inline";
@@ -34,6 +35,7 @@ async function injectDiff({
 	parentSha,
 	files,
 	document,
+	comments,
 }: {
 	owner: string;
 	repo: string;
@@ -41,6 +43,7 @@ async function injectDiff({
 	parentSha: string;
 	files: DiffEntry[];
 	document: Document;
+	comments?: ReviewComment[];
 }) {
 	const map = mapInjectableDiffElements(document, files);
 	const colorMode = getGithubColorMode(document);
@@ -51,6 +54,7 @@ async function injectDiff({
 		parentSha,
 		map,
 		colorMode,
+		comments,
 	});
 
 	const body = document.body;
@@ -147,10 +151,24 @@ async function getPullDiff(
 		});
 		return;
 	}
+
+	const commentsResponse = await chrome.runtime.sendMessage({
+		id: "GetGithubPullComments",
+		data: { owner, repo, pull },
+	});
+
 	const pullData = pullDataResponse as Pull;
 	const sha = pullData.head.sha;
 	const parentSha = pullData.base.sha;
-	await injectDiff({ owner, repo, sha, parentSha, files, document });
+	await injectDiff({
+		owner,
+		repo,
+		sha,
+		parentSha,
+		files,
+		document,
+		comments: commentsResponse as ReviewComment[],
+	});
 }
 
 async function getCommitDiff(

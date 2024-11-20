@@ -13,6 +13,7 @@ import { ErrorMessage } from "../ErrorMessage";
 import { Loading } from "../Loading";
 import { SourceRichToggle } from "../SourceRichToggle";
 import { BpmnDiffViewer, BpmnViewer } from "./bpmn-viewer";
+import type { ReviewComment } from "@bpmn-dmn-diff-viewer-extension/shared";
 
 async function loadModel(diagramXML: string) {
 	try {
@@ -30,6 +31,7 @@ export function BpmnDiffPortal({
 	repo,
 	sha,
 	parentSha,
+	comments,
 }: {
 	element: HTMLElement;
 	file: DiffEntry;
@@ -37,6 +39,7 @@ export function BpmnDiffPortal({
 	repo: string;
 	sha: string;
 	parentSha: string;
+	comments?: ReviewComment[];
 }): React.ReactElement {
 	const [loading, setLoading] = useState(true);
 	const [richDiff, setRichDiff] = useState<FileDiff>();
@@ -107,6 +110,7 @@ export function BpmnDiffPortal({
 			}
 		})();
 	}, [file, owner, repo, sha, parentSha]);
+
 	return (
 		<>
 			{toolbarContainer &&
