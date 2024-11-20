@@ -1,6 +1,6 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/tailwindcss-config",
-	"version": "1.0.0",
+	"version": "0.0.5",
 	"description": "Tailwind CSS configuration for boilerplate",
 	"main": "./tailwind.config.js",
 	"private": true
