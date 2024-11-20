@@ -2,6 +2,7 @@ import { Box } from "@primer/react";
 import DMNJS from "dmn-js/lib/NavigatedViewer";
 import { useEffect, useMemo } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import type { ViewsChangedEvent } from "./types";
 
 export function DMNViewer({ diagramXML }: { diagramXML?: string }) {
 	const containerId = "dmn-viewer";
@@ -28,6 +29,36 @@ export function DMNViewer({ diagramXML }: { diagramXML?: string }) {
 	return <Box className="js-skip-tagsearch" height="500px" id={containerId} />;
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+type DMN = any;
+
+function syncViewers({
+	beforeViewer,
+	afterViewer,
+}: {
+	beforeViewer: DMN;
+	afterViewer: DMN;
+}) {
+	function update(viewer: DMN) {
+		return (e: ViewsChangedEvent) => {
+			const currentViewerView = viewer.getActiveView();
+
+			if (currentViewerView.id === e.activeView.id) {
+				return;
+			}
+
+			const view = e.views.find((v) => v.id === e.activeView.id);
+
+			if (view) {
+				viewer.open(view);
+			}
+		};
+	}
+
+	beforeViewer.on("views.changed", update(afterViewer));
+	afterViewer.on("views.changed", update(beforeViewer));
+}
+
 export function DMNDiffViewer({
 	before,
 	after,
@@ -38,7 +69,6 @@ export function DMNDiffViewer({
 		return new DMNJS({
 			width: "100%",
 			height: "100%",
-
 			keyboard: {
 				bindTo: document,
 			},
@@ -65,6 +95,8 @@ export function DMNDiffViewer({
 	useEffect(() => {
 		beforeViewer.attachTo(document.querySelector(`#${beforeContainerId}`));
 		afterViewer.attachTo(document.querySelector(`#${afterContainerId}`));
+
+		syncViewers({ beforeViewer, afterViewer });
 
 		return () => {
 			beforeViewer?.destroy();

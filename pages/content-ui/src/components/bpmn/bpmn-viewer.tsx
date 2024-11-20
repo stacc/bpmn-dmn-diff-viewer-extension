@@ -212,12 +212,8 @@ function syncViewers({
 		};
 	}
 
-	function syncViewbox(a: BpmnJS<TypeMap>, b: BpmnJS<TypeMap>) {
-		a.on("canvas.viewbox.changed", update(b));
-	}
-
-	syncViewbox(beforeViewer, afterViewer);
-	syncViewbox(afterViewer, beforeViewer);
+	beforeViewer.on("canvas.viewbox.changed", update(afterViewer));
+	afterViewer.on("canvas.viewbox.changed", update(beforeViewer));
 }
 
 export function BpmnDiffViewer({

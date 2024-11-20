@@ -1,6 +1,6 @@
 {
 	"name": "chrome-extension",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "chrome extension",
 	"scripts": {
 		"clean": "rimraf ../../dist && rimraf .turbo",
@@ -27,7 +27,7 @@
 		"@laynezh/vite-plugin-lib-assets": "^0.5.23",
 		"@octokit/openapi-types": "^22.2.0",
 		"@octokit/types": "^13.5.0",
-		"@types/ws": "^8.5.13",
+		"@types/ws": "^8.5.11",
 		"magic-string": "^0.30.11",
 		"ts-loader": "^9.5.1"
 	}
