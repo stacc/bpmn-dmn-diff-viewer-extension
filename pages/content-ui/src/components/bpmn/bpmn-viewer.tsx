@@ -246,7 +246,6 @@ export function BpmnDiffViewer({
 		return new BpmnJS<TypeMap>({
 			width: "100%",
 			height: "100%",
-
 			keyboard: {
 				bindTo: document,
 			},

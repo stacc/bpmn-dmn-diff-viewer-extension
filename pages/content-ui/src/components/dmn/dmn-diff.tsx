@@ -53,42 +53,37 @@ export function DMNDiffPortal({
 	}, [element]);
 
 	useEffect(() => {
-		(async () => {
-			setLoading(true);
-			const response = await chrome.runtime.sendMessage({
-				id: MESSAGE_ID.GET_FILE_DIFF,
-				data: { owner, repo, sha, parentSha, file },
-			});
-			console.log("response", response, file.filename);
-			if ("error" in response) {
-				setLoading(false);
-			} else {
-				const before = response.before;
-				const after = response.after;
-				if (before && after) {
-					setRichDiff({
-						before,
-						after,
-						diff: "diff",
-					});
+		const fetchDiffData = async () => {
+			try {
+				setLoading(true);
+				const response = await chrome.runtime.sendMessage({
+					id: MESSAGE_ID.GET_FILE_DIFF,
+					data: { owner, repo, sha, parentSha, file },
+				});
+
+				if ("error" in response) {
+					throw new Error(response.error);
 				}
-				if (before && !after) {
-					setRichDiff({
-						before,
-						after: null,
-						diff: null,
-					});
-				}
-				if (!before && after) {
-					setRichDiff({
-						before: null,
-						after,
-						diff: null,
-					});
-				}
+
+				const { before, after } = response;
+				setRichDiff({
+					before: before || null,
+					after: after || null,
+					diff: before && after ? "diff" : null,
+				});
+			} catch (error) {
+				console.error("Failed to fetch diff:", error);
+				setRichDiff({
+					before: null,
+					after: null,
+					diff: null,
+				});
+			} finally {
 				setLoading(false);
 			}
-		})();
+		};
+
+		fetchDiffData();
 	}, [file, owner, repo, sha, parentSha]);
 
 	return (

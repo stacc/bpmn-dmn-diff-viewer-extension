@@ -12,6 +12,26 @@ export const extensionToSrcFormat: {
 	dmn: "dmn",
 };
 
+/**
+ * Safely decodes a base64 string containing UTF-8 characters.
+ * @param base64String The base64 encoded string to decode
+ * @returns The decoded string with proper UTF-8 character handling
+ */
+export function decodeBase64ToString(base64String: string): string {
+	// Step 1: Convert base64 to binary string
+	const binaryString = atob(base64String);
+
+	// Step 2: Create a Uint8Array from the binary string
+	const bytes = new Uint8Array(binaryString.length);
+	for (let i = 0; i < binaryString.length; i++) {
+		bytes[i] = binaryString.charCodeAt(i);
+	}
+
+	// Step 3: Decode the Uint8Array as UTF-8
+	const decoder = new TextDecoder("utf-8");
+	return decoder.decode(bytes);
+}
+
 export async function getContentString({
 	github,
 	owner,
@@ -38,7 +58,7 @@ export async function getContentString({
 	if (!contentFile.content) {
 		throw Error(`No Content associated with ${path} at ${ref}`);
 	}
-	return atob(contentFile.content);
+	return decodeBase64ToString(contentFile.content);
 }
 
 export async function getFileDiff(
@@ -53,10 +73,11 @@ export async function getFileDiff(
 	const extension = filename.split(".").pop();
 	if (!extension || !extensionToSrcFormat[extension]) {
 		throw Error(
-			`Unsupported extension. Given ${extension}, was expecting ${Object.keys(extensionToSrcFormat)}`,
+			`Unsupported extension. Given ${extension}, was expecting ${Object.keys(
+				extensionToSrcFormat,
+			)}`,
 		);
 	}
-	console.log("filename", filename);
 	if (status === "modified") {
 		const before = await getContentString({
 			github,

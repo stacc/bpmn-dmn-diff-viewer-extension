@@ -4,9 +4,7 @@
 	"description": "bpmn diff viewer extension options",
 	"private": true,
 	"sideEffects": true,
-	"files": [
-		"dist/**"
-	],
+	"files": ["dist/**"],
 	"scripts": {
 		"clean": "rimraf ./dist && rimraf .turbo",
 		"build": "pnpm run clean && tsc --noEmit && vite build",
@@ -17,7 +15,7 @@
 	"dependencies": {
 		"@bpmn-dmn-diff-viewer-extension/shared": "workspace:*",
 		"@bpmn-dmn-diff-viewer-extension/storage": "workspace:*",
-		"@primer/react": "^36.27.0",
+		"@primer/react": "36.25.0",
 		"@radix-ui/themes": "^3.1.1",
 		"react": "18.3.1",
 		"react-dom": "18.3.1"
