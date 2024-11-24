@@ -1,11 +1,11 @@
 import { Box, ThemeProvider } from "@primer/react";
-import type { ColorModeWithAuto } from "@primer/react/lib/ThemeProvider";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { ErrorMessage } from "../ErrorMessage";
 import { SourceRichToggle } from "../SourceRichToggle";
 import { BpmnViewer } from "./bpmn-viewer";
+import type { ColorModeWithAuto } from "node_modules/@primer/react/lib-esm/ThemeProvider";
 
 export type BPMNFilePreviewPageProps = {
 	colorMode: ColorModeWithAuto;

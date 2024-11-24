@@ -3,6 +3,8 @@ import DMNJS from "dmn-js/lib/NavigatedViewer";
 import { useEffect, useMemo } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import type { ViewsChangedEvent } from "./types";
+import type { Results } from "node_modules/@stacc/dmn-differ/_dist/src/change-handler";
+import { ChangedDialog } from "./changed-dialog";
 
 export function DMNViewer({ diagramXML }: { diagramXML?: string }) {
 	const containerId = "dmn-viewer";
@@ -62,7 +64,8 @@ function syncViewers({
 export function DMNDiffViewer({
 	before,
 	after,
-}: { before?: string | null; after?: string | null }) {
+	diff,
+}: { before?: string | null; after?: string | null; diff?: Results | null }) {
 	const beforeContainerId = "dmn-diff-viewer-before";
 	const afterContainerId = "dmn-diff-viewer-after";
 	const beforeViewer = useMemo(() => {
@@ -121,6 +124,21 @@ export function DMNDiffViewer({
 					<Box height="500px" id={afterContainerId} />
 				</Panel>
 			</PanelGroup>
+			<Box
+				sx={{
+					position: "absolute",
+					bottom: "10px",
+					left: "10px",
+					display: "flex",
+					gap: "10px",
+					flexDirection: "column",
+					backgroundColor: "canvas.overlay",
+					padding: "10px",
+					borderRadius: "6px",
+				}}
+			>
+				<ChangedDialog diff={diff} />
+			</Box>
 		</div>
 	);
 }
