@@ -1,7 +1,7 @@
 import { AlertIcon } from "@primer/octicons-react";
 import { Box, Button, ThemeProvider } from "@primer/react";
 import { Blankslate } from "@primer/react/experimental";
-import type { ColorModeWithAuto } from "@primer/react/lib/ThemeProvider";
+import type { ColorModeWithAuto } from "node_modules/@primer/react/lib-esm/ThemeProvider";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 

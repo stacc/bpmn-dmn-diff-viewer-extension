@@ -11,6 +11,8 @@ import { ErrorMessage } from "../ErrorMessage";
 import { Loading } from "../Loading";
 import { SourceRichToggle } from "../SourceRichToggle";
 import { DMNDiffViewer, DMNViewer } from "./dmn-viewer";
+import { diff, camundaScheme } from "@stacc/dmn-differ";
+import DmnModdle from "dmn-moddle";
 
 export function DMNDiffPortal({
 	element,
@@ -66,10 +68,18 @@ export function DMNDiffPortal({
 				}
 
 				const { before, after } = response;
+				const beforeModdle = await new DmnModdle({
+					camunda: camundaScheme,
+				}).fromXML(before);
+				const afterModdle = await new DmnModdle({
+					camunda: camundaScheme,
+				}).fromXML(after);
+				const results = diff(beforeModdle, afterModdle);
+
 				setRichDiff({
 					before: before || null,
 					after: after || null,
-					diff: before && after ? "diff" : null,
+					diff: before && after ? results : null,
 				});
 			} catch (error) {
 				console.error("Failed to fetch diff:", error);
@@ -119,10 +129,7 @@ export function DMNDiffPortal({
 								{richDiff ? (
 									<div>
 										{richDiff.diff ? (
-											<DMNDiffViewer
-												before={richDiff.before}
-												after={richDiff.after}
-											/>
+											<DMNDiffViewer {...richDiff} />
 										) : richDiff.before ? (
 											<DMNViewer diagramXML={richDiff.before} />
 										) : richDiff.after ? (

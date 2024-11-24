@@ -1,6 +1,6 @@
 import type { DiffEntry } from "@bpmn-dmn-diff-viewer-extension/shared/lib/types";
 import { ThemeProvider } from "@primer/react";
-import type { ColorModeWithAuto } from "@primer/react/lib/ThemeProvider";
+import type { ColorModeWithAuto } from "node_modules/@primer/react/lib-esm/ThemeProvider";
 import type React from "react";
 import { BpmnDiffPortal } from "./bpmn/bpmn-diff";
 import { DMNDiffPortal } from "./dmn/dmn-diff";

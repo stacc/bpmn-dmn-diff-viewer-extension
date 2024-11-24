@@ -182,12 +182,15 @@ importers:
       '@primer/react':
         specifier: 36.25.0
         version: 36.25.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@5.3.11(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1))
+      '@stacc/dmn-differ':
+        specifier: npm:@jsr/stacc__dmn-differ@^0.0.2
+        version: '@jsr/stacc__dmn-differ@0.0.2'
       bpmn-js:
         specifier: ^18.0.0
         version: 18.0.0
       bpmn-js-differ:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^3.0.2
+        version: 3.0.2
       bpmn-moddle:
         specifier: ^9.0.1
         version: 9.0.1
@@ -197,6 +200,9 @@ importers:
       dmn-js:
         specifier: ^17.0.3
         version: 17.0.3(@lezer/common@1.2.1)
+      dmn-moddle:
+        specifier: ^10.0.0
+        version: 10.0.0
       github-injection:
         specifier: ^1.1.0
         version: 1.1.0
@@ -828,8 +834,8 @@ packages:
   '@github/paste-markdown@1.5.3':
     resolution: {integrity: sha512-PzZ1b3PaqBzYqbT4fwKEhiORf38h2OcGp2+JdXNNM7inZ7egaSmfmhyNkQILpqWfS0AYtRS3CDq6z03eZ8yOMQ==}
 
-  '@github/relative-time-element@4.4.2':
-    resolution: {integrity: sha512-wTXunu3hmuGljA5CHaaoUIKV0oI35wno0FKJl2yqKplTRnsCA5bPNj4bDeVIubkuskql6jwionWLlGM1Y6QLaw==}
+  '@github/relative-time-element@4.4.3':
+    resolution: {integrity: sha512-EVKokqx9/DdUAZ2l9WVyY51EtRCO2gQWWMvsRIn7r4glJ91q9CXcnILVHZVCpfD52ucXUhUvtYsAjNJ4qP4uIg==}
 
   '@github/tab-container-element@4.8.2':
     resolution: {integrity: sha512-WkaM4mfs8x7dXRWEaDb5deC0OhH6sGQ5cw8i/sVw25gikl4f8C7mHj0kihL5k3eKIIqmGT1Fdswdoi+9ZLDpRA==}
@@ -861,6 +867,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@jsr/stacc__dmn-differ@0.0.2':
+    resolution: {integrity: sha512-jL171ClwK1MjR0qpJykYoCAcxvI++PKUrO6Yq3QwICPWMmMBysm5E2TQTgE1oiSV4kCU7Zs35jKHUe0xYr8L3A==, tarball: https://npm.jsr.io/~/11/@jsr/stacc__dmn-differ/0.0.2.tgz}
 
   '@laynezh/vite-plugin-lib-assets@0.5.23':
     resolution: {integrity: sha512-17df7hIpAM/wO+2z6cI7OIBuoJCHz1pRtY5A6g+R72KVKhjp8KrqCObDapuWEGY+RliSTBjvwi6rfQfFj/1JKg==}
@@ -959,11 +968,11 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@primer/behaviors@1.7.1':
-    resolution: {integrity: sha512-Ew3C2ZNWHbW6R8YxBCQTAjDTBi4oYWxW0rBJSY1YZAaTb9VBioyNC6vLLxB0jYF5poP4qy8sd2hRer0VZRD6uQ==}
+  '@primer/behaviors@1.8.0':
+    resolution: {integrity: sha512-ZUfhWVY4ZBKc2Fh3fIa2Qwwa3SnOi914lY5wcmN+UNtsBxeXsjWNwpohJbwRwWZm+nJ3C1n9qJFWpHuBlDVU1A==}
 
-  '@primer/live-region-element@0.7.0':
-    resolution: {integrity: sha512-V3pPHlYDMU6UHDVSYeSzZJ5LHhM06k/CaegstoXUk6DzgNsT4z0IhnqeEtyNAqe21PDXNFCpCtxZZndEDgN7FQ==}
+  '@primer/live-region-element@0.7.2':
+    resolution: {integrity: sha512-wdxCHfcJzE1IPPjZNFR4RTwRcSWb7TN0fRdMH5HcxphLEnuZBWy0TAxk3xPA+/6lwiN3uEJ+ZWV4UF/glXh43A==}
 
   '@primer/octicons-react@19.11.0':
     resolution: {integrity: sha512-8PpCz7cpYY2GCGnJ/G9UARh9PH4C290l31YjriQHZ+WsagE37ntKXhFwq+s4OWoRqZ7fA7HeU81zGDFHQi0VKg==}
@@ -2036,8 +2045,8 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
-  bpmn-js-differ@2.0.2:
-    resolution: {integrity: sha512-3Skq88Iin7wi59N8vw/SyVrz0ZPTeUhHQ6DuYbyK/5xsXExh1l4RohcT2TyyOuvXq+mIMtdZ4BM/v2UprduPCg==}
+  bpmn-js-differ@3.0.2:
+    resolution: {integrity: sha512-9MNRWF9LpgojeIcbl8dV2VZ57DkYxjj9FuJGEgEtAHe9DzkroA4XN7mg4RBftHDdX/VAZ7g13XBq7q3aR27hkg==}
 
   bpmn-js@18.0.0:
     resolution: {integrity: sha512-eZR4hqk2BT0m9jAGGtp/f1TD0m7LXXKfYle99q75d+NjSmxetIuvxGn48S9W+H8arJ7vgsls2GELzXoDuEE0eg==}
@@ -2264,6 +2273,11 @@ packages:
 
   diffpatch@0.5.1:
     resolution: {integrity: sha512-qPngY9o4warfIvTHGnpdiC2Z6ay9xbySPxWUoh6KqnzL6+/ne16Ph13m5Hbpm8a2ckpPjfbAYlOKKwiymqrqmw==}
+    engines: {node: '>=8'}
+    hasBin: true
+
+  diffpatch@0.6.0:
+    resolution: {integrity: sha512-VEhkRPD6j3U+QU+1DhbWulYLNWhk5WkP4rz0S8L3iAiJ+has2eCCAFZwdFiw10LXdPpB3XHjtl6CpbvBCPjZuw==}
     engines: {node: '>=8'}
     hasBin: true
 
@@ -4349,7 +4363,7 @@ snapshots:
 
   '@github/paste-markdown@1.5.3': {}
 
-  '@github/relative-time-element@4.4.2': {}
+  '@github/relative-time-element@4.4.3': {}
 
   '@github/tab-container-element@4.8.2': {}
 
@@ -4388,6 +4402,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@jsr/stacc__dmn-differ@0.0.2':
+    dependencies:
+      diffpatch: 0.5.1
+      min-dash: 4.2.2
 
   '@laynezh/vite-plugin-lib-assets@0.5.23(vite@5.4.0(@types/node@22.9.1)(terser@5.31.5))':
     dependencies:
@@ -4505,9 +4524,9 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@primer/behaviors@1.7.1': {}
+  '@primer/behaviors@1.8.0': {}
 
-  '@primer/live-region-element@0.7.0':
+  '@primer/live-region-element@0.7.2':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
 
@@ -4522,12 +4541,12 @@ snapshots:
       '@github/combobox-nav': 2.3.1
       '@github/markdown-toolbar-element': 2.2.3
       '@github/paste-markdown': 1.5.3
-      '@github/relative-time-element': 4.4.2
+      '@github/relative-time-element': 4.4.3
       '@github/tab-container-element': 4.8.2
       '@lit-labs/react': 1.2.1
       '@oddbird/popover-polyfill': 0.3.8
-      '@primer/behaviors': 1.7.1
-      '@primer/live-region-element': 0.7.0
+      '@primer/behaviors': 1.8.0
+      '@primer/live-region-element': 0.7.2
       '@primer/octicons-react': 19.11.0(react@18.3.1)
       '@primer/primitives': 7.17.1
       '@styled-system/css': 5.1.5
@@ -5648,10 +5667,10 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
-  bpmn-js-differ@2.0.2:
+  bpmn-js-differ@3.0.2:
     dependencies:
-      diffpatch: 0.5.1
-      min-dash: 3.8.1
+      diffpatch: 0.6.0
+      min-dash: 4.2.2
 
   bpmn-js@18.0.0:
     dependencies:
@@ -5873,6 +5892,10 @@ snapshots:
     dependencies:
       chalk: 2.4.2
       diff-match-patch: 1.0.5
+
+  diffpatch@0.6.0:
+    dependencies:
+      picocolors: 1.1.1
 
   dir-glob@3.0.1:
     dependencies:
