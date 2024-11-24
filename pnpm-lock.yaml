@@ -213,8 +213,8 @@ importers:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
       react-resizable-panels:
-        specifier: ^2.0.20
-        version: 2.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.1.7
+        version: 2.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@bpmn-dmn-diff-viewer-extension/hmr':
         specifier: workspace:*
@@ -3179,11 +3179,11 @@ packages:
       '@types/react':
         optional: true
 
-  react-resizable-panels@2.0.23:
-    resolution: {integrity: sha512-8ZKTwTU11t/FYwiwhMdtZYYyFxic5U5ysRu2YwfkAgDbUJXFvnWSJqhnzkSlW+mnDoNAzDCrJhdOSXBPA76wug==}
+  react-resizable-panels@2.1.7:
+    resolution: {integrity: sha512-JtT6gI+nURzhMYQYsx8DKkx6bSoOGFp7A3CwMrOb8y5jFHFyqwo9m68UhmXRw57fRVJksFn1TSlm3ywEQ9vMgA==}
     peerDependencies:
-      react: ^16.14.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
+      react: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
   react-style-singleton@2.2.1:
     resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
@@ -6909,7 +6909,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-resizable-panels@2.0.23(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-resizable-panels@2.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
