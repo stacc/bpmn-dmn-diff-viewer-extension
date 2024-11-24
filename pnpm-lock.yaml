@@ -94,7 +94,7 @@ importers:
         specifier: ^13.5.0
         version: 13.5.0
       '@types/ws':
-        specifier: ^8.5.11
+        specifier: ^8.5.13
         version: 8.5.13
       magic-string:
         specifier: ^0.30.11
