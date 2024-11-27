@@ -1,10 +1,12 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/options",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "bpmn diff viewer extension options",
 	"private": true,
 	"sideEffects": true,
-	"files": ["dist/**"],
+	"files": [
+		"dist/**"
+	],
 	"scripts": {
 		"clean": "rimraf ./dist && rimraf .turbo",
 		"build": "pnpm run clean && tsc --noEmit && vite build",
