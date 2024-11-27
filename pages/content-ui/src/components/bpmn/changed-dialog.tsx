@@ -5,8 +5,8 @@ import { useRef, useState } from "react";
 import type { Diff } from "./bpmn-viewer";
 
 type AttributeValue = {
-	oldValue?: string | number | { body: string };
-	newValue?: string | number | { body: string };
+	oldValue?: string | number | { body: string; text: string };
+	newValue?: string | number | { body: string; text: string };
 };
 
 function createData(diff: Diff) {
@@ -68,7 +68,10 @@ function createData(diff: Diff) {
 export function ChangedDialog({
 	diff,
 	hightlight,
-}: { diff?: Diff | null; hightlight: (id: string) => void }) {
+}: {
+	diff?: Diff | null;
+	hightlight: (id: string) => void;
+}) {
 	const [isOpen, setIsOpen] = useState(false);
 	const returnFocusRef = useRef(null);
 
@@ -165,33 +168,39 @@ export function ChangedDialog({
 																>
 																	{typeof attributeValue.oldValue ===
 																		"object" &&
+																	attributeValue.oldValue !== null &&
 																	Object.hasOwn(
 																		attributeValue.oldValue,
-																		"body",
+																		"text",
 																	) ? (
 																		<Label variant="attention">
-																			{attributeValue.oldValue.body}
+																			{attributeValue.oldValue.text ||
+																				attributeValue.oldValue.body}
 																		</Label>
 																	) : typeof attributeValue.oldValue !==
 																		"object" ? (
-																		<Label variant="attention">
-																			{attributeValue.oldValue}
-																		</Label>
+																		<>
+																			<Label variant="attention">
+																				{attributeValue.oldValue}
+																			</Label>
+																			<Box sx={{ marginY: "auto" }}>
+																				<ArrowRightIcon
+																					verticalAlign="middle"
+																					size={16}
+																				/>
+																			</Box>
+																		</>
 																	) : null}
-																	<Box sx={{ marginY: "auto" }}>
-																		<ArrowRightIcon
-																			verticalAlign="middle"
-																			size={16}
-																		/>
-																	</Box>
 																	{typeof attributeValue.newValue ===
 																		"object" &&
+																	attributeValue.newValue !== null &&
 																	Object.hasOwn(
 																		attributeValue.newValue,
-																		"body",
+																		"text",
 																	) ? (
 																		<Label variant="success">
-																			{attributeValue.newValue.body}
+																			{attributeValue.newValue.text ||
+																				attributeValue.newValue.body}
 																		</Label>
 																	) : typeof attributeValue.newValue !==
 																		"object" ? (

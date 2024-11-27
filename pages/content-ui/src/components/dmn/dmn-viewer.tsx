@@ -10,11 +10,7 @@ export function DMNViewer({ diagramXML }: { diagramXML?: string }) {
 	const containerId = "dmn-viewer";
 
 	const viewer = useMemo(() => {
-		return new DMNJS({
-			keyboard: {
-				bindTo: document,
-			},
-		});
+		return new DMNJS();
 	}, []);
 
 	useEffect(() => {
@@ -72,9 +68,6 @@ export function DMNDiffViewer({
 		return new DMNJS({
 			width: "100%",
 			height: "100%",
-			keyboard: {
-				bindTo: document,
-			},
 		});
 	}, []);
 
@@ -82,9 +75,6 @@ export function DMNDiffViewer({
 		return new DMNJS({
 			width: "100%",
 			height: "100%",
-			keyboard: {
-				bindTo: document,
-			},
 		});
 	}, []);
 

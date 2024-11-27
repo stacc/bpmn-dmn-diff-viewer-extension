@@ -23,11 +23,7 @@ export function BpmnViewer({ diagramXML }: { diagramXML: string }) {
 	const containerId = "bpmn-viewer";
 
 	const viewer = useMemo(() => {
-		return new BpmnJS<TypeMap>({
-			keyboard: {
-				bindTo: document,
-			},
-		});
+		return new BpmnJS<TypeMap>();
 	}, []);
 
 	useEffect(() => {
@@ -242,9 +238,6 @@ export function BpmnDiffViewer({
 		return new BpmnJS<TypeMap>({
 			width: "100%",
 			height: "100%",
-			keyboard: {
-				bindTo: document,
-			},
 		});
 	}, []);
 
@@ -252,9 +245,6 @@ export function BpmnDiffViewer({
 		return new BpmnJS<TypeMap>({
 			width: "100%",
 			height: "100%",
-			keyboard: {
-				bindTo: document,
-			},
 		});
 	}, []);
 

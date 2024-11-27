@@ -1,6 +1,6 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/dev-utils",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"description": "chrome extension dev utils",
 	"private": true,
 	"sideEffects": false,

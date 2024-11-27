@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const packageJson = JSON.parse(fs.readFileSync("../package.json", "utf8"));
+const packageJson = JSON.parse(fs.readFileSync("./package.json", "utf8"));
 
 /**
  * After changing, please reload the extension at `chrome://extensions`

@@ -1,6 +1,6 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/tsconfig",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"description": "tsconfig for chrome extension",
 	"private": true
 }

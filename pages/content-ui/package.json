@@ -1,6 +1,6 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/content-ui",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"description": "chrome extension content ui",
 	"type": "module",
 	"private": true,
