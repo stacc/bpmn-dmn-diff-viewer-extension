@@ -1,10 +1,12 @@
 {
 	"name": "@bpmn-dmn-diff-viewer-extension/storage",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "chrome extension storage",
 	"private": true,
 	"sideEffects": false,
-	"files": ["dist/**"],
+	"files": [
+		"dist/**"
+	],
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
